@@ -1,5 +1,8 @@
 import { combineReducers } from 'redux'
+import { HitsReduser } from './HitsReduser'
 
-export const mainReducer = combineReducers({
-    
+const mainReducer = combineReducers({
+    addHits: HitsReduser,
 })
+
+export default mainReducer

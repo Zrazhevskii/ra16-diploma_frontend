@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-const urlHits = 'http://localhost:7070/api/top-sales';
+const urlHits = 'http://localhost:3500/api';
 
 export const getHits = async () => {
     const hits = await axios
-        .get(urlHits)
+        .get(urlHits + '/top-sales')
         .then((res) => {
-            console.log(res)
+            // console.log(res)
             return res.data;
         })
         .catch((error) => {

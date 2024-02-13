@@ -2,9 +2,9 @@ import React from 'react';
 import { getHits } from '../api';
 
 export const Hits = () => {
-    const fullHits = getHits();
+    // const fullHits = getHits().then((data) => console.log(data));
 
-    // console.log(getHits());
+    // console.log(fullHits);
 
     return (
         <section className='top-sales'>
