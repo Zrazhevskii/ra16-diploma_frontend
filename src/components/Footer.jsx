@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 export const Footer = () => {
     return (
@@ -9,19 +10,28 @@ export const Footer = () => {
                         <h5>Информация</h5>
                         <ul className='nav flex-column'>
                             <li className='nav-item'>
-                                <a href='/about.html' className='nav-link'>
+                                <NavLink
+                                    to='/about'
+                                    className='nav-link'
+                                >
                                     О магазине
-                                </a>
+                                </NavLink>
                             </li>
                             <li className='nav-item'>
-                                <a href='/catalog.html' className='nav-link'>
+                                <NavLink
+                                    to='/catalog'
+                                    className='nav-link'
+                                >
                                     Каталог
-                                </a>
+                                </NavLink>
                             </li>
                             <li className='nav-item'>
-                                <a href='/contacts.html' className='nav-link'>
+                                <NavLink
+                                    to='/contacts'
+                                    className='nav-link'
+                                >
                                     Контакты
-                                </a>
+                                </NavLink>
                             </li>
                         </ul>
                     </section>

@@ -25,7 +25,7 @@ export const Header = () => {
                                 <li className='nav-item'>
                                     <NavLink
                                         className='nav-link'
-                                        // href='/catalog.html'
+                                        to='/catalog'
                                     >
                                         Каталог
                                     </NavLink>
@@ -33,7 +33,7 @@ export const Header = () => {
                                 <li className='nav-item'>
                                     <NavLink
                                         className='nav-link'
-                                        // href='/about.html'
+                                        to='/about'
                                     >
                                         О магазине
                                     </NavLink>
@@ -41,7 +41,7 @@ export const Header = () => {
                                 <li className='nav-item'>
                                     <NavLink
                                         className='nav-link'
-                                        // href='/contacts.html'
+                                        to='/contacts'
                                     >
                                         Контакты
                                     </NavLink>
