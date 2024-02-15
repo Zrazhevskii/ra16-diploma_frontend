@@ -1,9 +1,10 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { fetchHitsItems } from '../actions/actionsItems';
+// import { useDispatch } from 'react-redux';
+// import { fetchHitsItems } from '../actions/actionsItems';
 
 export const Catalog = () => {
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
+
     return (
         <section className='catalog'>
             <h2 className='text-center'>Каталог</h2>
@@ -130,31 +131,9 @@ export const Catalog = () => {
                         </div>
                     </div>
                 </div>
-                <div className='col-4'>
-                    <div className='card catalog-item-card'>
-                        <img
-                            // src='./img/products/superhero_sneakers.jpg'
-                            className='card-img-top img-fluid'
-                            alt='Супергеройские кеды'
-                        />
-                        <div className='card-body'>
-                            <p className='card-text'>Супергеройские кеды</p>
-                            <p className='card-text'>1 400 руб.</p>
-                            <a
-                                // href='/products/1.html'
-                                className='btn btn-outline-primary'
-                            >
-                                Заказать
-                            </a>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div className='text-center'>
-                <button
-                    className='btn btn-outline-primary'
-                    onClick={() => dispatch(fetchHitsItems())}
-                >
+                <button className='btn btn-outline-primary'>
                     Загрузить ещё
                 </button>
             </div>
