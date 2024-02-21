@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-export const ItemCard = ({ data }) => {
+export const HitsCards = ({ data }) => {
     // console.log(data.images);
     return (
         <div className='col-4'>

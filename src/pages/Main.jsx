@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 import banner from '../img/banner.jpg';
-import { Hits } from '../components/Hits';
-import { Catalog } from './Catalog';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { fetchHitsItems } from '../actions/actionsItems';
+import { Outlet } from 'react-router-dom';
 
 export const Main = () => {
-    const hitsItems = useSelector((state) => state.addHits);
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(fetchHitsItems());
     }, []);
@@ -24,8 +23,7 @@ export const Main = () => {
                         />
                         <h2 className='banner-header'>К весне готовы!</h2>
                     </div>
-                    {hitsItems.length !== 0 && <Hits />}
-                    <Catalog />
+                    <Outlet/>                    
                 </div>
             </div>
         </main>

@@ -1,15 +1,24 @@
 import {
+    addCatalogItems,
+    catalogLoader,
+    catalogLoaderError,
+} from '../store/CatalogReduser';
+
+import {
     addHitsAction,
     hitsLoader,
     hitsLoaderError,
 } from '../store/HitsReduser';
+
 import axios from 'axios';
+
+const URL = 'http://localhost:3500/api';
 
 export const fetchHitsItems = () => async (dispatch) => {
     dispatch(hitsLoader());
 
     await axios
-        .get('http://localhost:3500/api/top-sales')
+        .get(URL + '/top-sales')
         .then((response) => dispatch(addHitsAction(response.data)))
         .catch((err) => {
             dispatch(hitsLoaderError(err));
@@ -17,4 +26,14 @@ export const fetchHitsItems = () => async (dispatch) => {
         });
 };
 
+export const fetchCatalogItems = () => async (dispatch) => {
+    dispatch(catalogLoader());
 
+    await axios
+        .get(URL + '/items')
+        .then((response) => dispatch(addCatalogItems(response.data)))
+        .catch((err) => {
+            dispatch(catalogLoaderError(err));
+            console.log(err);
+        });
+};

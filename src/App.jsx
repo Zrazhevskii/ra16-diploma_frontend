@@ -7,17 +7,20 @@ import { About } from './pages/About';
 import { Catalog } from './pages/Catalog';
 import { Contacts } from './pages/Contacts';
 import { Card } from './pages/Card';
+import { Hits } from './components/Hits';
 
 function App() {
     return (
         <div className='main_wrapper'>
             <Header />
             <Routes>
-                <Route path='/' element={<Main />} />
-                <Route path='/about' element={<About />} />
-                <Route path='/catalog' element={<Catalog />} />
-                <Route path='/contacts' element={<Contacts />} />
-                <Route path='/catalog/:id' element={<Card />} />
+                <Route path='/' element={<Main />}>
+                    <Route index element={<Hits />} />
+                    <Route path='/about' element={<About />} />
+                    <Route path='/catalog' element={<Catalog />} />
+                    <Route path='/contacts' element={<Contacts />} />
+                    <Route path='/catalog/:id' element={<Card />} />
+                </Route>
             </Routes>
             <Footer />
         </div>
