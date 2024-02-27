@@ -33,6 +33,9 @@ const CategoriesReduser = (state = initialState, action) => {
                 loader: false,
                 error: action.payload,
             };
+
+        default:
+            return state;
     }
 };
 

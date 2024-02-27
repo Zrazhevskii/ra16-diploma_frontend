@@ -2,10 +2,13 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCatalogItems } from '../actions/actionsItems';
 import { CatalogCards } from '../components/CatalogCards';
+import { CategoriesItems } from '../components/CategoriesItems';
 
 export const Catalog = () => {
     const dispatch = useDispatch();
     const catalogItems = useSelector((state) => state.catalog)
+    const categoriesItems = useSelector((state) => state.categories);
+    const { categories } = categoriesItems;
 
     useEffect(() => {
         dispatch(fetchCatalogItems())
@@ -23,26 +26,9 @@ export const Catalog = () => {
                         Все
                     </a>
                 </li>
-                <li className='nav-item'>
-                    <a className='nav-link' href='#'>
-                        Женская обувь
-                    </a>
-                </li>
-                <li className='nav-item'>
-                    <a className='nav-link' href='#'>
-                        Мужская обувь
-                    </a>
-                </li>
-                <li className='nav-item'>
-                    <a className='nav-link' href='#'>
-                        Обувь унисекс
-                    </a>
-                </li>
-                <li className='nav-item'>
-                    <a className='nav-link' href='#'>
-                        Детская обувь
-                    </a>
-                </li>
+                {categories.map((elem) => {
+                    return <CategoriesItems data={elem}/>
+                })}
             </ul>
             <div className='row'>
                 {catalogItems.catalog.map((elem) => {

@@ -2,10 +2,14 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { HitsCards } from './HitsCards';
 import { CatalogCards } from './CatalogCards';
+import { CategoriesItems } from './CategoriesItems';
 
 export const Hits = () => {
     const hitsItems = useSelector((state) => state.addHits);
     const catalogItems = useSelector((state) => state.catalog);
+    const { catalog } = catalogItems;
+    const categoriesItems = useSelector((state) => state.categories);
+    const { categories } = categoriesItems;
 
     return (
         <>
@@ -18,47 +22,31 @@ export const Hits = () => {
                         })}
                 </div>
             </section>
-            {catalogItems.catalog.length !== 0 &&
+            {catalog.length !== 0 && (
                 <section className='catalog'>
-                <h2 className='text-center'>Каталог</h2>
-                <ul className='catalog-categories nav justify-content-center'>
-                    <li className='nav-item'>
-                        <a className='nav-link active' href='#'>
-                            Все
-                        </a>
-                    </li>
-                    <li className='nav-item'>
-                        <a className='nav-link' href='#'>
-                            Женская обувь
-                        </a>
-                    </li>
-                    <li className='nav-item'>
-                        <a className='nav-link' href='#'>
-                            Мужская обувь
-                        </a>
-                    </li>
-                    <li className='nav-item'>
-                        <a className='nav-link' href='#'>
-                            Обувь унисекс
-                        </a>
-                    </li>
-                    <li className='nav-item'>
-                        <a className='nav-link' href='#'>
-                            Детская обувь
-                        </a>
-                    </li>
-                </ul>
-                <div className='row'>
-                    {catalogItems.catalog.map((elem) => {
-                        return <CatalogCards data={elem}/>
-                    })}
-                </div>
-                <div className='text-center'>
-                    <button className='btn btn-outline-primary'>
-                        Загрузить ещё
-                    </button>
-                </div>
-            </section>}
+                    <h2 className='text-center'>Каталог</h2>
+                    <ul className='catalog-categories nav justify-content-center'>
+                        <li className='nav-item'>
+                            <a className='nav-link active' href='#'>
+                                Все
+                            </a>
+                        </li>
+                        {categories.map((elem) => {
+                            return <CategoriesItems data={elem} />;
+                        })}
+                    </ul>
+                    <div className='row'>
+                        {catalog.map((elem) => {
+                            return <CatalogCards data={elem} key={elem.id} />;
+                        })}
+                    </div>
+                    <div className='text-center'>
+                        <button className='btn btn-outline-primary'>
+                            Загрузить ещё
+                        </button>
+                    </div>
+                </section>
+            )}
         </>
     );
 };

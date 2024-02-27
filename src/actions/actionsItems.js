@@ -5,6 +5,12 @@ import {
 } from '../store/CatalogReduser';
 
 import {
+    addCategoriesItems,
+    categoriesLoader,
+    categoriesLoaderError,
+} from '../store/CategoriesReduser';
+
+import {
     addHitsAction,
     hitsLoader,
     hitsLoaderError,
@@ -34,6 +40,18 @@ export const fetchCatalogItems = () => async (dispatch) => {
         .then((response) => dispatch(addCatalogItems(response.data)))
         .catch((err) => {
             dispatch(catalogLoaderError(err));
+            console.log(err);
+        });
+};
+
+export const fetchCategoriesItems = () => async (dispatch) => {
+    dispatch(categoriesLoader());
+
+    await axios
+        .get(URL + '/categories')
+        .then((response) => dispatch(addCategoriesItems(response.data)))
+        .catch((err) => {
+            dispatch(categoriesLoaderError(err));
             console.log(err);
         });
 };

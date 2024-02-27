@@ -8,6 +8,7 @@ import { Catalog } from './pages/Catalog';
 import { Contacts } from './pages/Contacts';
 import { Card } from './pages/Card';
 import { Hits } from './components/Hits';
+import { NoNamePages } from './pages/NoNamePages';
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                     <Route path='/catalog' element={<Catalog />} />
                     <Route path='/contacts' element={<Contacts />} />
                     <Route path='/catalog/:id' element={<Card />} />
+                    <Route path='*' element={<NoNamePages/>}/>
                 </Route>
             </Routes>
             <Footer />
