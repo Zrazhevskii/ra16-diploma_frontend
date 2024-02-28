@@ -15,7 +15,7 @@ export const HitsCards = ({ data }) => {
                     <p className='card-text'>{data.title}</p>
                     <p className='card-text'>{data.price}</p>
                     <NavLink
-                        to='/catalog/item'
+                        to='/items/22'
                         className='btn btn-outline-primary'
                     >
                         Заказать

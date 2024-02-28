@@ -1,8 +1,19 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { fetchCardItem } from '../actions/actionsItems';
 
 export const CatalogCards = ({data}) => {
-    
+    const cardItems = useSelector((state) => state.card)
+    const dispatch = useDispatch()
+
+    const handleShowCard = (e) => {
+        e.preventDefault();
+        dispatch(fetchCardItem(data.id))
+        // console.log(cardItems)
+    }
+
+    // console.log(cardItems)
 
     return (
         <div className='col-4'>
@@ -16,8 +27,9 @@ export const CatalogCards = ({data}) => {
                     <p className='card-text'>{data.title}</p>
                     <p className='card-text'>{data.price}.</p>
                     <NavLink
-                        to='/catalog/item'
+                        to='/items'
                         className='btn btn-outline-primary'
+                        // onClick={(e) => handleShowCard(e)}
                     >
                         Заказать
                     </NavLink>

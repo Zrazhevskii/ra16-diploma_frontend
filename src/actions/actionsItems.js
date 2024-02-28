@@ -1,3 +1,4 @@
+import { addCard } from '../store/CardItemReduser';
 import {
     addCatalogItems,
     catalogLoader,
@@ -55,3 +56,13 @@ export const fetchCategoriesItems = () => async (dispatch) => {
             console.log(err);
         });
 };
+
+export const fetchCardItem = (id) => async (dispatch) => {
+   
+    await axios
+        .get(URL + `/items/${id}`)
+        .then((response) => dispatch(addCard(response.data)))
+        .catch((err) => {
+            console.log(err);
+        });
+}

@@ -6,8 +6,8 @@ import { Outlet } from 'react-router-dom';
 
 export const Main = () => {
     const dispatch = useDispatch();
-    const categoriesItems = useSelector((state) => state.categories);
-    const { categories } = categoriesItems
+    // const categoriesItems = useSelector((state) => state.categories);
+    // const { categories } = categoriesItems
 
     useEffect(() => {
         dispatch(fetchCategoriesItems());
