@@ -32,7 +32,7 @@ export const Hits = () => {
                             </a>
                         </li>
                         {categories.map((elem) => {
-                            return <CategoriesItems data={elem} />;
+                            return <CategoriesItems data={elem} key={elem.id}/>;
                         })}
                     </ul>
                     <div className='row'>

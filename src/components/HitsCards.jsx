@@ -14,12 +14,12 @@ export const HitsCards = ({ data }) => {
                 <div className='card-body'>
                     <p className='card-text'>{data.title}</p>
                     <p className='card-text'>{data.price}</p>
-                    <a
-                        href='/products/1.html'
+                    <NavLink
+                        to='/catalog/item'
                         className='btn btn-outline-primary'
                     >
                         Заказать
-                    </a>
+                    </NavLink>
                 </div>
             </div>
         </div>

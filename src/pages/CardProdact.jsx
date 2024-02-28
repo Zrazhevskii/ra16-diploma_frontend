@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Card = () => {
+export const CardProdact = () => {
     return (
         <section class='catalog-item'>
             <h2 class='text-center'>Босоножки 'MYER'</h2>

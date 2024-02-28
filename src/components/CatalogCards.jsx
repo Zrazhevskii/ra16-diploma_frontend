@@ -1,9 +1,8 @@
 import React from 'react';
-// import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 export const CatalogCards = ({data}) => {
-    // const catalogItems = useSelector((state) => state.catalog);
-    // console.log(data)
+    
 
     return (
         <div className='col-4'>
@@ -16,12 +15,12 @@ export const CatalogCards = ({data}) => {
                 <div className='card-body'>
                     <p className='card-text'>{data.title}</p>
                     <p className='card-text'>{data.price}.</p>
-                    <a
-                        href='/products/1.html'
+                    <NavLink
+                        to='/catalog/item'
                         className='btn btn-outline-primary'
                     >
                         Заказать
-                    </a>
+                    </NavLink>
                 </div>
             </div>
         </div>
