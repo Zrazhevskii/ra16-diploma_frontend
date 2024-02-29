@@ -2,6 +2,7 @@ import {
     ADD_CATALOG_SUCCES,
     CATALOG_LOADER_START,
     CATALOG_LOADER_ERROR,
+    CLEAR_CATALOG,
 } from '../actions/actions';
 
 const initialState = {
@@ -30,6 +31,11 @@ const catalogReduser = (state = initialState, action) => {
                 loading: false,
                 error: action.payload,
             };
+
+        case CLEAR_CATALOG:
+            state = initialState
+            return state
+            
         default:
             return state;
     }
@@ -48,5 +54,9 @@ export const catalogLoaderError = () => ({
     type: CATALOG_LOADER_ERROR,
     payload: 'Что-то пошло не так, преегрузите страницу',
 });
+
+export const clearCatalogs = () => {
+    type: CLEAR_CATALOG
+}
 
 export default catalogReduser;

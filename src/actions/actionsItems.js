@@ -66,3 +66,13 @@ export const fetchCardItem = (id) => async (dispatch) => {
             console.log(err);
         });
 }
+
+export const fetchSearchCards = (str) => async (dispatch) => {
+    // console.log(str)
+    await axios
+        .get(URL + `/items?q=${str}`)
+        .then((response) => dispatch(addCatalogItems(response.data)))
+        .catch((err) => {
+            console.log(err);
+        });
+}

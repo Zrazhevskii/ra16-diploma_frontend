@@ -1,23 +1,26 @@
 import React, { useState } from 'react';
 import logo from '../img/header-logo.png';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 import { ADD_FORM_VALUES, CLEAR_FORM } from '../actions/actions';
+import { fetchSearchCards } from '../actions/actionsItems';
 
 export const Header = () => {
     const formValue = useSelector((state) => state.formvalues);
+    const { value } = formValue;
     const dispatch = useDispatch();
+    const navigate = useNavigate()
 
     const [Visible, setVisible] = useState(true);
 
-    const handleForms = (e) => {
+    const searchForms = (e) => {
         e.preventDefault();
 
         dispatch({ type: ADD_FORM_VALUES, payload: e.target.value });
     };
 
-    // console.log(formValue.value);
+    // console.log(value);
 
     const classVisible = classNames({
         invisible: Visible,
@@ -25,13 +28,17 @@ export const Header = () => {
 
     const searchProdacts = () => {
         // setVisible(!Visible);
-        if (formValue.value) {
+        if (value) {
+            // console.log(value)
+            dispatch(fetchSearchCards(value))
+            navigate('/catalog')
 
             // Здесь вставляем отчитску state каталога и отправку запроса на поиск товаров по фильтру
 
-            dispatch({type: CLEAR_FORM})
+            
+            // dispatch({type: CLEAR_FORM})
             setVisible(!Visible);
-        } else if ( !formValue.value ) {
+        } else if ( !value ) {
             setVisible(!Visible);
         }
         // setVisible(!Visible);
@@ -103,8 +110,8 @@ export const Header = () => {
                                             type='text'
                                             className='form-control'
                                             placeholder='Поиск'
-                                            value={formValue.value}
-                                            onChange={(e) => handleForms(e)}
+                                            value={value}
+                                            onChange={(e) => searchForms(e)}
                                         />
                                     </form>
                                 </div>

@@ -1,35 +1,24 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { fetchCardItem } from '../actions/actionsItems';
 
-export const CatalogCards = ({data}) => {
-    const cardItems = useSelector((state) => state.card)
-    const dispatch = useDispatch()
+export const CatalogCards = ({ data }) => {
 
-    const handleShowCard = (e) => {
-        e.preventDefault();
-        dispatch(fetchCardItem(data.id))
-        // console.log(cardItems)
-    }
-
-    // console.log(cardItems)
+    const { id, title, images, price } = data;
 
     return (
         <div className='col-4'>
             <div className='card catalog-item-card'>
                 <img
-                    src={data.images[0]}
+                    src={images[0]}
                     className='card-img-top img-fluid'
-                    alt={data.title}
+                    alt={title}
                 />
                 <div className='card-body'>
-                    <p className='card-text'>{data.title}</p>
-                    <p className='card-text'>{data.price}.</p>
+                    <p className='card-text'>{title}</p>
+                    <p className='card-text'>{price}.</p>
                     <NavLink
-                        to='/items'
+                        to={`/items/${id}`}
                         className='btn btn-outline-primary'
-                        // onClick={(e) => handleShowCard(e)}
                     >
                         Заказать
                     </NavLink>
