@@ -3,6 +3,7 @@ import {
     addCatalogItems,
     catalogLoader,
     catalogLoaderError,
+    clearCatalogs,
 } from '../store/CatalogReduser';
 
 import {
@@ -69,6 +70,9 @@ export const fetchCardItem = (id) => async (dispatch) => {
 
 export const fetchSearchCards = (str) => async (dispatch) => {
     // console.log(str)
+    dispatch(catalogLoader());
+    dispatch(clearCatalogs());
+
     await axios
         .get(URL + `/items?q=${str}`)
         .then((response) => dispatch(addCatalogItems(response.data)))

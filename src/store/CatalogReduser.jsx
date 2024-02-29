@@ -55,8 +55,8 @@ export const catalogLoaderError = () => ({
     payload: 'Что-то пошло не так, преегрузите страницу',
 });
 
-export const clearCatalogs = () => {
+export const clearCatalogs = () => ({
     type: CLEAR_CATALOG
-}
+})
 
 export default catalogReduser;

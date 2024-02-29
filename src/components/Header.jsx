@@ -3,14 +3,13 @@ import logo from '../img/header-logo.png';
 import { NavLink, useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
-import { ADD_FORM_VALUES, CLEAR_FORM } from '../actions/actions';
-import { fetchSearchCards } from '../actions/actionsItems';
+import { ADD_FORM_VALUES } from '../actions/actions';
 
 export const Header = () => {
     const formValue = useSelector((state) => state.formvalues);
     const { value } = formValue;
     const dispatch = useDispatch();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const [Visible, setVisible] = useState(true);
 
@@ -20,29 +19,17 @@ export const Header = () => {
         dispatch({ type: ADD_FORM_VALUES, payload: e.target.value });
     };
 
-    // console.log(value);
-
     const classVisible = classNames({
         invisible: Visible,
     });
 
     const searchProdacts = () => {
-        // setVisible(!Visible);
         if (value) {
-            // console.log(value)
-            dispatch(fetchSearchCards(value))
-            navigate('/catalog')
-
-            // Здесь вставляем отчитску state каталога и отправку запроса на поиск товаров по фильтру
-
-            
-            // dispatch({type: CLEAR_FORM})
+            navigate('/catalog');
             setVisible(!Visible);
-        } else if ( !value ) {
+        } else if (!value) {
             setVisible(!Visible);
         }
-        // setVisible(!Visible);
-        // console.log(formValue.value);
     };
 
     return (
