@@ -1,8 +1,58 @@
-# React + Vite
+# Дипломный проект курса «React»
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Дипломный проект представляет собой интернет-магазин обуви. Задача заключается в создании работающего приложения, всеми основными функциями которого можно пользоваться.
 
-Currently, two official plugins are available:
+Как это всегда бывает, вы, фронтенд-разработчик, — последний в цепочке создания продукта, поэтому вам необходимо пользоваться результатами работы верстальщика и бекэнд-разработчика. И если результаты работы верстальщика вы ещё можете немного подправить, то бэкенд вы уже не имеете права редактировать.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Большая часть разметки и стилей уже реализована за вас и хранится в каталоге html. Как всегда, пояснений особо к разметке нет, так как, со слов верстальщика, «там и так всё понятно».
+
+Перейдём к самому приложению.
+
+## Обязательные условия
+
+Все функции должны быть реализованы.
+
+Внешний вид должен быть аналогичен тому, что представлен в разметке в каталоге `html.`
+
+Бэкенд видоизменять нельзя. Всё, что можно там сделать, — это раскомментировать строки для генерации задержки и ошибки:
+
+```
+const fortune = (ctx, body = null, status = 200) => {
+    // Uncomment for delay
+    // const delay = randomNumber(1, 10) * 1000;
+    const delay = 0;
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            // Uncomment for error generation
+            // if (Math.random() > 0.8) {
+            //     reject(new Error('Something bad happened'));
+            //     return;
+            // }
+
+            ctx.response.status = status;
+            ctx.response.body = body;
+            resolve();
+        }, delay);
+    })
+}
+```
+
+Они специально закомментированы, чтобы вам не приходилось ждать по 0–10 секунд на каждый запрос и не мучиться с ошибками.
+
+Запускать сервер нужно командой npm run watch, не забудьте сначала сделать npm install, тогда он запустится в режиме live-reload.
+
+Для хранения состояния корзины и побочных эффектов могут использоваться:
+
+1. Context API + побочные эффекты в компонентах;
+2. Redux + побочные эффекты в компонентах, либо Action Creator;
+3. Redux + Redux Thunk;
+4. Redux + Redux Observable;
+5. Redux + Redux-saga.
+
+Выбирайте любой удобный вам способ. Итоговая оценка не зависит от того, какой из пяти способов вы выберите.
+
+Весь код должен быть выложен на GitHub в виде отдельного репозитория.
+
+При оформлении кода рекомендуем вам опираться на стиль кодирования Airbnb:
+
+[Airbnb](https://github.com/airbnb/javascript) (именно JS, а не React).

@@ -6,8 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ADD_FORM_VALUES } from '../actions/actions';
 
 export const Header = () => {
-    const formValue = useSelector((state) => state.formvalues);
-    const { value } = formValue;
+    const value = useSelector((state) => state.formvalues.value);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
