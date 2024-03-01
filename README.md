@@ -120,17 +120,17 @@ const fortune = (ctx, body = null, status = 200) => {
 
 Экран «Главная страница» доступен по умолчанию при открытии приложения.
 
-![main page](https://github.com/Zrazhevskii/ra16-diploma_frontend/blob/main/public/index-loading.png)
+![main page1](https://github.com/Zrazhevskii/ra16-diploma_frontend/blob/main/public/index-loading.png)
 
 При загрузке любых данных с помощью сетевых запросов должен отображаться лоадер. У каждого виджета лоадер свой, то есть у вас не должно быть одного лоадера на всё приложение.
 
 После загрузки страница выглядит следующим образом:
 
-
+![main-page2](https://github.com/Zrazhevskii/ra16-diploma_frontend/blob/main/public/index-loaded.png)
 
 Общая схема:
 
-
+![main-page-comments](https://github.com/Zrazhevskii/ra16-diploma_frontend/blob/main/public/index-loaded-comments.png)
 
 Вам нужно реализовать:
 
