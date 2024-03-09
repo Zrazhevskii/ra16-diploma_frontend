@@ -7,25 +7,18 @@ import {
     fetchCatalogItems,
     fetchCategoriesItems,
     fetchHitsItems,
+    fetchShowMoreProducts,
 } from '../actions/actionsItems';
+import { MoreShowButton } from './MoreShowButton';
 
 export const Hits = () => {
     const hits = useSelector((state) => state.addHits.hits);
     const catalogItems = useSelector((state) => state.catalog.catalog);
-    const categories = useSelector((state) => state.categories.categories);
     const dispatch = useDispatch();
-
-    // useEffect(() => {
-    //     dispatch(fetchCatalogItems())
-    // }, [])
 
     useEffect(() => {
         dispatch(fetchHitsItems());
     }, []);
-
-    // useEffect(() => {
-    //     dispatch(fetchCategoriesItems())
-    // }, [])
 
     return (
         <>
@@ -49,11 +42,7 @@ export const Hits = () => {
                             return <CatalogCards data={item} key={item.id} />;
                         })}
                     </div>
-                    <div className='text-center'>
-                        <button className='btn btn-outline-primary'>
-                            Загрузить ещё
-                        </button>
-                    </div>
+                    <MoreShowButton/>
                 </section>
             )}
         </>

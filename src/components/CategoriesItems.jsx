@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     fetchPersonalCategiories,
@@ -15,20 +15,14 @@ export const CategoriesItems = () => {
     const handleSearchCategory = (e, id) => {
         e.preventDefault();
         dispatch(activeCat(id))
-        // dispatch(fetchPersonalCategiories(id));
-        // console.log(typeof(id))
+        dispatch(fetchPersonalCategiories(id));
     };
 
     const handleAllProducts = (e) => {
         e.preventDefault();
         dispatch(activeCat(11))
-        // console.log(actives)
-        // dispatch(fetchCatalogItems());
+        dispatch(fetchCatalogItems());
     };
-
-    // const getClass = (id) => id === id ? "nav-link active" : "nav-link";
-    // const activClass = ({ isActive }) =>
-    //     isActive ? 'nav-link active' : 'nav-link';
 
     return (
         <>
@@ -62,8 +56,3 @@ export const CategoriesItems = () => {
         </>
     );
 };
-
-// onClick={() => handleSearchCategory(data.title)}
-{
-    /* <CategoriesItems data={elem} key={elem.id}/> */
-}

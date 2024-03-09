@@ -92,3 +92,7 @@ export const fetchPersonalCategiories = (id) => async (dispatch) => {
             console.log(err);
         });
 }
+
+export const fetchShowMoreProducts = () => async (dispatch) => {
+    console.log('а теперь я тут')
+}
