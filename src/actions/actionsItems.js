@@ -20,13 +20,13 @@ import {
 
 import axios from 'axios';
 
-const URL = 'http://localhost:3500/api';
+const URL = 'http://localhost:3500';
 
 export const fetchHitsItems = () => async (dispatch) => {
     dispatch(hitsLoader());
 
     await axios
-        .get(URL + '/top-sales')
+        .get(URL + '/api/top-sales')
         .then((response) => dispatch(addHitsAction(response.data)))
         .catch((err) => {
             dispatch(hitsLoaderError(err));
@@ -35,10 +35,11 @@ export const fetchHitsItems = () => async (dispatch) => {
 };
 
 export const fetchCatalogItems = () => async (dispatch) => {
+    dispatch(clearCatalogs());
     dispatch(catalogLoader());
 
     await axios
-        .get(URL + '/items')
+        .get(URL + '/api/items')
         .then((response) => dispatch(addCatalogItems(response.data)))
         .catch((err) => {
             dispatch(catalogLoaderError(err));
@@ -50,7 +51,7 @@ export const fetchCategoriesItems = () => async (dispatch) => {
     dispatch(categoriesLoader());
 
     await axios
-        .get(URL + '/categories')
+        .get(URL + '/api/categories')
         .then((response) => dispatch(addCategoriesItems(response.data)))
         .catch((err) => {
             dispatch(categoriesLoaderError(err));
@@ -61,7 +62,7 @@ export const fetchCategoriesItems = () => async (dispatch) => {
 export const fetchCardItem = (id) => async (dispatch) => {
    
     await axios
-        .get(URL + `/items/${id}`)
+        .get(URL + `/api/items/${id}`)
         .then((response) => dispatch(addCard(response.data)))
         .catch((err) => {
             console.log(err);
@@ -69,12 +70,23 @@ export const fetchCardItem = (id) => async (dispatch) => {
 }
 
 export const fetchSearchCards = (str) => async (dispatch) => {
-    // console.log(str)
     dispatch(catalogLoader());
     dispatch(clearCatalogs());
 
     await axios
-        .get(URL + `/items?q=${str}`)
+        .get(URL + `/api/items?q=${str}`)
+        .then((response) => dispatch(addCatalogItems(response.data)))
+        .catch((err) => {
+            console.log(err);
+        });
+}
+
+export const fetchPersonalCategiories = (id) => async (dispatch) => {
+    dispatch(clearCatalogs());
+    dispatch(catalogLoader());
+
+    await axios
+        .get(URL + `/api/items?categoryId=${id}`)
         .then((response) => dispatch(addCatalogItems(response.data)))
         .catch((err) => {
             console.log(err);

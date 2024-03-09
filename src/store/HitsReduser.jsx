@@ -4,13 +4,13 @@ import {
     HITS_LOADER_ERROR,
 } from '../actions/actions';
 
-const initialState = {
+const initialStateHits = {
     hits: [],
     loading: false,
     error: '',
 };
 
-const HitsReduser = (state = initialState, action) => {
+const HitsReduser = (state = initialStateHits, action) => {
     switch (action.type) {
         case HITS_LOADER_START:
             return {
@@ -47,4 +47,4 @@ export const hitsLoaderError = () => ({
     payload: 'Что-то пошло не так, преегрузите страницу',
 });
 
-export default HitsReduser
+export default HitsReduser;

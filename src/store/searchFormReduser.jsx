@@ -19,5 +19,6 @@ const searchFormReduser = (state = initialState, action) => {
 };
 
 export const addFormValue = (payload) => ({ type: ADD_FORM_VALUES, payload });
+export const clearForm = () => ({ type: CLEAR_FORM });
 
 export default searchFormReduser;

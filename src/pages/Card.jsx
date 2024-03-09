@@ -2,32 +2,43 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchCardItem } from '../actions/actionsItems';
+import { Dimensions } from '../components/Dimensions';
 
 export const Card = () => {
-    const cardItem = useSelector((state) => state.card)
+    const cardItem = useSelector((state) => state.card);
     const { product } = cardItem;
-    const params = useParams()
-    const dispatch = useDispatch()
-    const [ src, setSrc ] = useState()
+    const params = useParams();
+    const dispatch = useDispatch();
+    const [src, setSrc] = useState();
 
-    const id = parseInt(params.id)
+    const id = parseInt(params.id);
 
     useEffect(() => {
-        dispatch(fetchCardItem(id))
-    }, [])
+        dispatch(fetchCardItem(id));
+    }, []);
 
-    const { title, images, sku, manufacturer, color, material, season, reason } = product
+    const {
+        title,
+        images,
+        sku,
+        manufacturer,
+        color,
+        material,
+        season,
+        reason,
+        sizes,
+    } = product;
+
+    // console.log(product.sizes)
 
     // useEffect(() => {
     //     try {
-        //**Периодически выводится в консоли ошибка, что нельзя прочитать [0] или [1], посмотреть, что за хрень
-    //         setSrc(images[0])
+    // **Периодически выводится в консоли ошибка, что нельзя прочитать [0] или [1], посмотреть, что за хрень
+    // setSrc(images[0])
     //     } catch {
     //         setSrc(images[1])
     //     }
     // }, [images])
-
-    // console.log(cardItem)
 
     // ***НАДО сделать компоненты на 1) размеры и 2) количество!!!
 
@@ -73,17 +84,29 @@ export const Card = () => {
                     </table>
                     <div className='text-center'>
                         <p>
-                            Размеры в наличии:{' '}
-                            <span className='catalog-item-size selected'>
-                                18 US
-                            </span>{' '}
-                            <span className='catalog-item-size'>20 US</span>
+                            {/* {sizes.map((elem) => {
+                                if (elem.available) {
+                                    return (
+                                        <span className='catalog-item-size selected'>
+                                            {elem.size}
+                                        </span>
+                                    );
+                                }
+                                return (
+                                    <span className='catalog-item-size'>
+                                        {elem.size}
+                                    </span>
+                                );
+                            })} */}
+                            <Dimensions data={product.sizes} />
                         </p>
                         <p>
                             Количество:{' '}
                             <span className='btn-group btn-group-sm pl-2'>
                                 <button className='btn btn-secondary'>-</button>
-                                <span className='btn btn-outline-primary'>1</span>
+                                <span className='btn btn-outline-primary'>
+                                    1
+                                </span>
                                 <button className='btn btn-secondary'>+</button>
                             </span>
                         </p>
