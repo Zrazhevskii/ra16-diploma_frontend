@@ -1,24 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { HitsCards } from './HitsCards';
 import { CatalogCards } from './CatalogCards';
 import { CategoriesItems } from './CategoriesItems';
-import {
-    fetchCatalogItems,
-    fetchCategoriesItems,
-    fetchHitsItems,
-    fetchShowMoreProducts,
-} from '../actions/actionsItems';
 import { MoreShowButton } from './MoreShowButton';
 
 export const Hits = () => {
     const hits = useSelector((state) => state.addHits.hits);
     const catalogItems = useSelector((state) => state.catalog.catalog);
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(fetchHitsItems());
-    }, []);
 
     return (
         <>
@@ -42,7 +31,7 @@ export const Hits = () => {
                             return <CatalogCards data={item} key={item.id} />;
                         })}
                     </div>
-                    <MoreShowButton/>
+                    <MoreShowButton />
                 </section>
             )}
         </>

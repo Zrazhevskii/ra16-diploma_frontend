@@ -3,12 +3,15 @@ import {
     CATALOG_LOADER_START,
     CATALOG_LOADER_ERROR,
     CLEAR_CATALOG,
+    ADD_MORE_PRODUCTS,
+    ALL_PRODUCTS,
 } from '../actions/actions';
 
 const initialState = {
     catalog: [],
     loading: false,
     error: '',
+    allProducts: false,
 };
 
 const catalogReduser = (state = initialState, action) => {
@@ -18,7 +21,17 @@ const catalogReduser = (state = initialState, action) => {
                 ...state,
                 catalog: action.payload,
                 loading: false,
+                allProducts: false,
             };
+
+        case ADD_MORE_PRODUCTS:
+            return {
+                ...state,
+                catalog: [...state.catalog, ...action.payload],
+                loading: false,
+                allProducts: false,
+            };
+
         case CATALOG_LOADER_START:
             return {
                 ...state,
@@ -32,10 +45,16 @@ const catalogReduser = (state = initialState, action) => {
                 error: action.payload,
             };
 
+        case ALL_PRODUCTS:
+            return {
+                ...state,
+                allProducts: true,
+            }
+
         case CLEAR_CATALOG:
-            state = initialState
-            return state
-            
+            state = initialState;
+            return state;
+
         default:
             return state;
     }
@@ -46,8 +65,8 @@ export const addCatalogItems = (payload) => ({
     payload,
 });
 
-export const catalogLoader = () => ({ 
-    type: CATALOG_LOADER_START 
+export const catalogLoader = () => ({
+    type: CATALOG_LOADER_START,
 });
 
 export const catalogLoaderError = () => ({
@@ -56,7 +75,16 @@ export const catalogLoaderError = () => ({
 });
 
 export const clearCatalogs = () => ({
-    type: CLEAR_CATALOG
+    type: CLEAR_CATALOG,
+});
+
+export const addMorePrioducts = (payload) => ({
+    type: ADD_MORE_PRODUCTS,
+    payload
+});
+
+export const allProducts = () => ({
+    type: ALL_PRODUCTS,
 })
 
 export default catalogReduser;

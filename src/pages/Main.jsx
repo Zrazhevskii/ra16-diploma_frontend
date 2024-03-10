@@ -3,15 +3,17 @@ import banner from '../img/banner.jpg';
 import { Outlet } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { fetchCatalogItems, fetchCategoriesItems, fetchHitsItems } from '../actions/actionsItems';
+import { activeCat } from '../store/ActiveCategories';
 
 export const Main = () => {
     const dispatch = useDispatch()
 
-    // useEffect(() => {
-    //     dispatch(fetchHitsItems())
-    // }, [])
+    useEffect(() => {
+        dispatch(fetchHitsItems())
+    }, [])
 
     useEffect(() => {
+        dispatch(activeCat(11))
         dispatch(fetchCategoriesItems())
     }, [])
 

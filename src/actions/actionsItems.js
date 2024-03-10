@@ -1,6 +1,8 @@
 import { addCard } from '../store/CardItemReduser';
 import {
     addCatalogItems,
+    addMorePrioducts,
+    allProducts,
     catalogLoader,
     catalogLoaderError,
     clearCatalogs,
@@ -21,6 +23,11 @@ import {
 import axios from 'axios';
 
 const URL = 'http://localhost:3500';
+let OFFSET = 6;
+const all = {
+    id: 11,
+    title: 'Все',
+};
 
 export const fetchHitsItems = () => async (dispatch) => {
     dispatch(hitsLoader());
@@ -52,7 +59,10 @@ export const fetchCategoriesItems = () => async (dispatch) => {
 
     await axios
         .get(URL + '/api/categories')
-        .then((response) => dispatch(addCategoriesItems(response.data)))
+        .then((response) => {
+            response.data.unshift(all);
+            dispatch(addCategoriesItems(response.data));
+        })
         .catch((err) => {
             dispatch(categoriesLoaderError(err));
             console.log(err);
@@ -60,14 +70,13 @@ export const fetchCategoriesItems = () => async (dispatch) => {
 };
 
 export const fetchCardItem = (id) => async (dispatch) => {
-   
     await axios
         .get(URL + `/api/items/${id}`)
         .then((response) => dispatch(addCard(response.data)))
         .catch((err) => {
             console.log(err);
         });
-}
+};
 
 export const fetchSearchCards = (str) => async (dispatch) => {
     dispatch(catalogLoader());
@@ -79,7 +88,7 @@ export const fetchSearchCards = (str) => async (dispatch) => {
         .catch((err) => {
             console.log(err);
         });
-}
+};
 
 export const fetchPersonalCategiories = (id) => async (dispatch) => {
     dispatch(clearCatalogs());
@@ -91,8 +100,19 @@ export const fetchPersonalCategiories = (id) => async (dispatch) => {
         .catch((err) => {
             console.log(err);
         });
-}
+};
 
 export const fetchShowMoreProducts = () => async (dispatch) => {
-    console.log('а теперь я тут')
-}
+    await axios
+        .get(URL + `/api/items?offset=${OFFSET}`)
+        .then((response) => {
+            OFFSET = OFFSET + 6;
+            if (response.data.length < 6) {
+                dispatch(allProducts());
+            }
+            dispatch(addMorePrioducts(response.data));
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+};
