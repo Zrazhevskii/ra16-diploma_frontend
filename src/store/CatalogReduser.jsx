@@ -4,14 +4,12 @@ import {
     CATALOG_LOADER_ERROR,
     CLEAR_CATALOG,
     ADD_MORE_PRODUCTS,
-    ALL_PRODUCTS,
 } from '../actions/actions';
 
 const initialState = {
     catalog: [],
     loading: false,
     error: '',
-    allProducts: false,
 };
 
 const catalogReduser = (state = initialState, action) => {
@@ -21,7 +19,6 @@ const catalogReduser = (state = initialState, action) => {
                 ...state,
                 catalog: action.payload,
                 loading: false,
-                allProducts: false,
             };
 
         case ADD_MORE_PRODUCTS:
@@ -29,7 +26,6 @@ const catalogReduser = (state = initialState, action) => {
                 ...state,
                 catalog: [...state.catalog, ...action.payload],
                 loading: false,
-                allProducts: false,
             };
 
         case CATALOG_LOADER_START:
@@ -44,12 +40,6 @@ const catalogReduser = (state = initialState, action) => {
                 loading: false,
                 error: action.payload,
             };
-
-        case ALL_PRODUCTS:
-            return {
-                ...state,
-                allProducts: true,
-            }
 
         case CLEAR_CATALOG:
             state = initialState;
@@ -83,8 +73,8 @@ export const addMorePrioducts = (payload) => ({
     payload
 });
 
-export const allProducts = () => ({
-    type: ALL_PRODUCTS,
-})
+// export const allProducts = () => ({
+//     type: ALL_PRODUCTS,
+// })
 
 export default catalogReduser;

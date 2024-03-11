@@ -5,6 +5,7 @@ import CategoriesReduser from './CategoriesReduser'
 import searchFormReduser from './searchFormReduser'
 import cardItemReduser from './CardItemReduser'
 import activeCategoriesReduser from './ActiveCategories'
+import BooleanReduser from './BooleanReduser'
 
 const mainReducer = combineReducers({
     addHits: HitsReduser,
@@ -13,6 +14,7 @@ const mainReducer = combineReducers({
     formvalues: searchFormReduser,
     card: cardItemReduser,
     activeCategories: activeCategoriesReduser,
+    bool: BooleanReduser,
 })
 
 export default mainReducer

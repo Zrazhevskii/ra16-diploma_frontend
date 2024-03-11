@@ -6,6 +6,7 @@ const initialState = {
     13: 'nav-link',
     14: 'nav-link',
     15: 'nav-link',
+    active: 0,
 };
 
 const activeCategoriesReduser = (state = initialState, action) => {
@@ -18,6 +19,7 @@ const activeCategoriesReduser = (state = initialState, action) => {
                 13: 'nav-link',
                 14: 'nav-link',
                 15: 'nav-link',
+                active: 11,
             };
 
         case TWELVE_ACTIVE:
@@ -27,6 +29,7 @@ const activeCategoriesReduser = (state = initialState, action) => {
                 13: 'nav-link',
                 14: 'nav-link',
                 15: 'nav-link',
+                active: 12,
             };
 
         case THIRTEEN_ACTIVE:
@@ -36,6 +39,7 @@ const activeCategoriesReduser = (state = initialState, action) => {
                 13: 'nav-link active',
                 14: 'nav-link',
                 15: 'nav-link',
+                active: 13,
             };
 
         case FOURTEEN_ACTIVE:
@@ -45,6 +49,7 @@ const activeCategoriesReduser = (state = initialState, action) => {
                 13: 'nav-link',
                 14: 'nav-link active',
                 15: 'nav-link',
+                active: 14,
             };
 
         case FIFTEEN_ACTIVE:
@@ -54,6 +59,7 @@ const activeCategoriesReduser = (state = initialState, action) => {
                 13: 'nav-link',
                 14: 'nav-link',
                 15: 'nav-link active',
+                active: 15,
             };
 
         default:

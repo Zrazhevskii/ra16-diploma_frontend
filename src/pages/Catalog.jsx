@@ -4,6 +4,7 @@ import { fetchCatalogItems, fetchSearchCards } from '../actions/actionsItems';
 import { CatalogCards } from '../components/CatalogCards';
 import { CategoriesItems } from '../components/CategoriesItems';
 import { addFormValue, clearForm } from '../store/searchFormReduser';
+import { MoreShowButton } from '../components/MoreShowButton';
 
 export const Catalog = () => {
     const value = useSelector((state) => state.formvalues.value);
@@ -57,11 +58,7 @@ export const Catalog = () => {
                     return <CatalogCards data={elem} key={elem.id} />;
                 })}
             </div>
-            <div className='text-center'>
-                <button className='btn btn-outline-primary'>
-                    Загрузить ещё
-                </button>
-            </div>
+            <MoreShowButton />
         </section>
     );
 };
