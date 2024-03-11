@@ -9,6 +9,7 @@ import { Contacts } from './pages/Contacts';
 import { Card } from './pages/Card';
 import { Hits } from './components/Hits';
 import { NoNamePages } from './pages/NoNamePages';
+import { CartBasket } from './pages/CartBasket';
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                     <Route path='/catalog' element={<Catalog />} />
                     <Route path='/contacts' element={<Contacts />} />
                     <Route path='/items/:id' element={<Card />} />
+                    <Route path='/cart' element={<CartBasket />}/>
                     <Route path='*' element={<NoNamePages/>}/>
                 </Route>
             </Routes>

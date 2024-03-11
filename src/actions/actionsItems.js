@@ -42,7 +42,7 @@ export const fetchHitsItems = () => async (dispatch) => {
 };
 
 export const fetchCatalogItems = () => async (dispatch) => {
-    dispatch(nextProducts())
+    dispatch(nextProducts());
     dispatch(clearCatalogs());
     dispatch(catalogLoader());
 
@@ -102,7 +102,7 @@ export const fetchPersonalCategiories = (id) => async (dispatch) => {
             if (response.data.length < 6) {
                 dispatch(allProducts());
             }
-            dispatch(addCatalogItems(response.data))
+            dispatch(addCatalogItems(response.data));
         })
         .catch((err) => {
             console.log(err);
@@ -116,30 +116,61 @@ export const fetchShowMoreProducts = (id) => async (dispatch) => {
             .then((response) => {
                 OFFSET = OFFSET + 6;
                 if (response.data.length < 6) {
-                    dispatch(allProducts())
-                    // dispatch(addMorePrioducts(response.data));
-                    // return
+                    dispatch(allProducts());
                 }
                 dispatch(addMorePrioducts(response.data));
+
+                // if (fetchNullItems(id)) {
+                //     dispatch(allProducts());
+                // }
             })
             .catch((err) => {
                 console.log(err);
             });
-        return
-    } 
+        return;
+    }
     await axios
         .get(URL + `/api/items?categoryId=${id}&offset=${OFFSET}`)
         .then((response) => {
             OFFSET = OFFSET + 6;
             if (response.data.length < 6) {
-                dispatch(allProducts())
-                // dispatch(addMorePrioducts(response.data));
-                // return
+                dispatch(allProducts());
             }
             dispatch(addMorePrioducts(response.data));
+
+            if (fetchNullItems(id)) {
+                dispatch(allProducts());
+            }
         })
         .catch((err) => {
             console.log(err);
         });
-    
+};
+
+export const fetchNullItems = async (id) => {
+
+    if (id === 11) {
+        await axios
+            .get(URL + `/api/items?offset=${OFFSET}`)
+            .then((response) => {
+                if (response.data.length === 0) {
+                    return true;
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        return false
+    }
+    await axios
+        .get(URL + `/api/items?categoryId=${id}&offset=${OFFSET}`)
+        .then((response) => {
+            if (response.data.length === 0) {
+                return true;
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    return false
 };

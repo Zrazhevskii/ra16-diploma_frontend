@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { fetchCardItem } from '../actions/actionsItems';
 import { Dimensions } from '../components/Dimensions';
+import { Quantity } from '../components/Quantity';
 
 export const Card = () => {
     const cardItem = useSelector((state) => state.card);
@@ -10,6 +11,7 @@ export const Card = () => {
     const params = useParams();
     const dispatch = useDispatch();
     const [src, setSrc] = useState();
+    const navi = useNavigate();
 
     const id = parseInt(params.id);
 
@@ -28,6 +30,10 @@ export const Card = () => {
         reason,
         sizes,
     } = product;
+
+    const handleCart = () => {
+        navi('/cart')
+    }
 
     // console.log(product.sizes)
 
@@ -84,34 +90,11 @@ export const Card = () => {
                     </table>
                     <div className='text-center'>
                         <p>
-                            {/* {sizes.map((elem) => {
-                                if (elem.available) {
-                                    return (
-                                        <span className='catalog-item-size selected'>
-                                            {elem.size}
-                                        </span>
-                                    );
-                                }
-                                return (
-                                    <span className='catalog-item-size'>
-                                        {elem.size}
-                                    </span>
-                                );
-                            })} */}
                             <Dimensions data={product.sizes} />
                         </p>
-                        <p>
-                            Количество:{' '}
-                            <span className='btn-group btn-group-sm pl-2'>
-                                <button className='btn btn-secondary'>-</button>
-                                <span className='btn btn-outline-primary'>
-                                    1
-                                </span>
-                                <button className='btn btn-secondary'>+</button>
-                            </span>
-                        </p>
+                        <Quantity />
                     </div>
-                    <button className='btn btn-danger btn-block btn-lg'>
+                    <button className='btn btn-danger btn-block btn-lg' onClick={handleCart}>
                         В корзину
                     </button>
                 </div>
