@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from '../img/header-logo.png';
 import { NavLink, useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
@@ -11,6 +11,8 @@ export const Header = () => {
     const navigate = useNavigate();
 
     const [Visible, setVisible] = useState(true);
+    const [style, SetStyle] = useState('')
+    
 
     const searchForms = (e) => {
         e.preventDefault();
@@ -30,6 +32,18 @@ export const Header = () => {
             setVisible(!Visible);
         }
     };
+
+    useEffect(() => {
+        if (!value) {
+            SetStyle('header-controls-cart-full invisible')
+        } else {
+            SetStyle('header-controls-cart-full')
+        }
+    }, [value])
+
+    const handleGoToCart = () => {
+        navigate('/cart')
+    }
 
     return (
         <>
@@ -83,8 +97,8 @@ export const Header = () => {
                                             onClick={() => searchProdacts()}
                                         ></div>
                                         {/* <!-- Do programmatic navigation on click to /cart.html --> */}
-                                        <div className='header-controls-pic header-controls-cart'>
-                                            <div className='header-controls-cart-full invisible'></div>
+                                        <div className='header-controls-pic header-controls-cart' onClick={handleGoToCart}>
+                                            <div className={`${style}`}></div>
                                             <div className='header-controls-cart-menu'></div>
                                         </div>
                                     </div>
