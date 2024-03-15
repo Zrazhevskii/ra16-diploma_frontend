@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { fetchCardItem } from '../actions/actionsItems';
-import { Dimensions } from '../components/Dimensions';
-import { Quantity } from '../components/Quantity';
+import { SizeQuantity } from '../components/SizeQuantity';
 
 export const Card = () => {
-    const cardItem = useSelector((state) => state.card);
-    const { product } = cardItem;
+    const { product } = useSelector((state) => state.card);
     const params = useParams();
     const dispatch = useDispatch();
     const [src, setSrc] = useState();
-    const navi = useNavigate();
 
     const id = parseInt(params.id);
 
@@ -28,18 +25,11 @@ export const Card = () => {
         material,
         season,
         reason,
-        sizes,
     } = product;
-
-    const handleCart = () => {
-        navi('/cart')
-    }
-
-    // console.log(product.sizes)
 
     // useEffect(() => {
     //     try {
-    // **Периодически выводится в консоли ошибка, что нельзя прочитать [0] или [1], посмотреть, что за хрень
+    // // **Периодически выводится в консоли ошибка, что нельзя прочитать [0] или [1], посмотреть, что за хрень
     // setSrc(images[0])
     //     } catch {
     //         setSrc(images[1])
@@ -47,6 +37,7 @@ export const Card = () => {
     // }, [images])
 
     // ***НАДО сделать компоненты на 1) размеры и 2) количество!!!
+    // *** Выделение размера при флаге true у available
 
     return (
         <section className='catalog-item'>
@@ -88,15 +79,7 @@ export const Card = () => {
                             </tr>
                         </tbody>
                     </table>
-                    <div className='text-center'>
-                        <p>
-                            <Dimensions data={product.sizes} />
-                        </p>
-                        <Quantity />
-                    </div>
-                    <button className='btn btn-danger btn-block btn-lg' onClick={handleCart}>
-                        В корзину
-                    </button>
+                    <SizeQuantity />
                 </div>
             </div>
         </section>

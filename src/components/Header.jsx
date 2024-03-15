@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import logo from '../img/header-logo.png';
 import { NavLink, useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
@@ -10,8 +10,8 @@ export const Header = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const [Visible, setVisible] = useState(true);
-    const [style, SetStyle] = useState('')
+    const [Visible, setVisible] = useState(true); //открытие/закрытие формы
+    const [style, SetStyle] = useState('') //красный шильдик на эмблеме корзины, появление/исчезание
     
 
     const searchForms = (e) => {
@@ -44,6 +44,14 @@ export const Header = () => {
     const handleGoToCart = () => {
         navigate('/cart')
     }
+
+    const sortRef = useRef()
+
+    // useEffect(() => {
+    //     document.body.addEventListener('click', evt => {
+    //         // console.log(evt)
+    //     })
+    // }, [])
 
     return (
         <>

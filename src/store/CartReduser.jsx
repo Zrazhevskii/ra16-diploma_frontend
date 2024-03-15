@@ -8,15 +8,17 @@ import {
 const initialState = {
     cart: [],
     loading: false,
-    sum: null,
+    allSum: 0,
 };
 
 const CartReduser = (state = initialState, action) => {
     switch (action.type) {
         case ADD_PRODUCT_CART_SUCCES:
+            // console.log(action.payload)
             return {
                 ...state,
                 cart: action.payload,
+                // [...state.cart, ...action.payload]
             };
         case LOADING_CART:
             return {
@@ -27,7 +29,7 @@ const CartReduser = (state = initialState, action) => {
         case SUM_CART:
             return {
                 ...state,
-                sum: action.payload,
+                allSum: action.payload,
             };
 
         case DELET_PRODUCT_CART:

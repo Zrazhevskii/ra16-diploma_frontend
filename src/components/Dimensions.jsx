@@ -7,14 +7,6 @@ export const Dimensions = ({ data }) => {
     return (
         data &&
         data.map((elem) => {
-            // console.log(elem.size)
-            // if (elem.available) {
-            //     return (
-            //         <span className='catalog-item-size selected'>
-            //             {elem.size}
-            //         </span>
-            //     );
-            // }
             return <span className='catalog-item-size' key={id++}>{elem.size}</span>;
         })
     );
