@@ -1,4 +1,4 @@
-import { addCard } from '../store/CardItemReduser';
+import { addCard, cardLoader, cardLoaderError } from '../store/CardItemReduser';
 import { allProducts, nextProducts } from '../store/BooleanReduser';
 import {
     addCatalogItems,
@@ -50,7 +50,7 @@ export const fetchCatalogItems = () => async (dispatch) => {
         .get(URL + '/api/items')
         .then((response) => dispatch(addCatalogItems(response.data)))
         .catch((err) => {
-            dispatch(catalogLoaderError(err));
+            dispatch(catalogLoaderError());
             console.log(err);
         });
 };
@@ -65,16 +65,19 @@ export const fetchCategoriesItems = () => async (dispatch) => {
             dispatch(addCategoriesItems(response.data));
         })
         .catch((err) => {
-            dispatch(categoriesLoaderError(err));
+            dispatch(categoriesLoaderError());
             console.log(err);
         });
 };
 
 export const fetchCardItem = (id) => async (dispatch) => {
+    dispatch(cardLoader())
+    
     await axios
         .get(URL + `/api/items/${id}`)
         .then((response) => dispatch(addCard(response.data)))
         .catch((err) => {
+            dispatch(cardLoaderError())
             console.log(err);
         });
 };

@@ -1,21 +1,24 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from '../img/header-logo.png';
 import { NavLink, useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 import { ADD_FORM_VALUES } from '../actions/actions';
+import { fetchCatalogItems } from '../actions/actionsItems';
 
 export const Header = () => {
     const value = useSelector((state) => state.formvalues.value);
     const carts = useSelector((state) => state.cart);
     const { cart } = carts;
-    // console.log(cart)
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const [Visible, setVisible] = useState(true); //открытие/закрытие формы
-    const [style, SetStyle] = useState('') //красный шильдик на эмблеме корзины, появление/исчезание
-    
+    const [style, SetStyle] = useState(''); //красный шильдик на эмблеме корзины, появление/исчезание
+
+    const hendleShowCatalog = () => {
+        dispatch(fetchCatalogItems());
+    };
 
     const searchForms = (e) => {
         e.preventDefault();
@@ -38,23 +41,15 @@ export const Header = () => {
 
     useEffect(() => {
         if (cart.length > 0) {
-            SetStyle('header-controls-cart-full')
+            SetStyle('header-controls-cart-full');
         } else {
-            SetStyle('header-controls-cart-full invisible')
+            SetStyle('header-controls-cart-full invisible');
         }
-    }, [cart])
+    }, [cart]);
 
     const handleGoToCart = () => {
-        navigate('/cart')
-    }
-
-    // const sortRef = useRef()
-
-    // useEffect(() => {
-    //     document.body.addEventListener('click', evt => {
-    //         // console.log(evt)
-    //     })
-    // }, [])
+        navigate('/cart');
+    };
 
     return (
         <>
@@ -62,7 +57,11 @@ export const Header = () => {
                 <div className='row'>
                     <div className='col'>
                         <nav className='navbar navbar-expand-sm navbar-light bg-light'>
-                            <NavLink className='navbar-brand' to='/'>
+                            <NavLink
+                                className='navbar-brand'
+                                to='/'
+                                onClick={hendleShowCatalog}
+                            >
                                 <img src={logo} alt='Bosa Noga' />
                             </NavLink>
                             <div
@@ -71,7 +70,11 @@ export const Header = () => {
                             >
                                 <ul className='navbar-nav mr-auto'>
                                     <li className='nav-item'>
-                                        <NavLink className='nav-link' to='/'>
+                                        <NavLink
+                                            className='nav-link'
+                                            to='/'
+                                            onClick={hendleShowCatalog}
+                                        >
                                             Главная
                                         </NavLink>
                                     </li>
@@ -79,6 +82,7 @@ export const Header = () => {
                                         <NavLink
                                             className='nav-link'
                                             to='/catalog'
+                                            onClick={hendleShowCatalog}
                                         >
                                             Каталог
                                         </NavLink>
@@ -108,8 +112,13 @@ export const Header = () => {
                                             onClick={() => searchProdacts()}
                                         ></div>
                                         {/* <!-- Do programmatic navigation on click to /cart.html --> */}
-                                        <div className='header-controls-pic header-controls-cart' onClick={handleGoToCart}>
-                                            <div className={`${style}`}>{cart.length}</div>
+                                        <div
+                                            className='header-controls-pic header-controls-cart'
+                                            onClick={handleGoToCart}
+                                        >
+                                            <div className={`${style}`}>
+                                                {cart.length}
+                                            </div>
                                             <div className='header-controls-cart-menu'></div>
                                         </div>
                                     </div>

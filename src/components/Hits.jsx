@@ -4,7 +4,7 @@ import { HitsCards } from './HitsCards';
 import { CatalogCards } from './CatalogCards';
 import { CategoriesItems } from './CategoriesItems';
 import { MoreShowButton } from './MoreShowButton';
-import { LoaderCatalog } from './LoaderCatalog';
+import { LoaderMainPages } from './Loaders';
 
 export const Hits = () => {
     const { catalog, loading } = useSelector((state) => state.catalog);
@@ -15,7 +15,7 @@ export const Hits = () => {
             {loadingHits ? (
                 <section className='top-sales'>
                     <h2 className='text-center'>Хиты продаж!</h2>
-                    <LoaderCatalog />
+                    <LoaderMainPages />
                 </section>
             ) : (
                 hits.length !== 0 && (
@@ -30,18 +30,27 @@ export const Hits = () => {
                 )
             )}
 
-            {(catalog.length !== 0 && (
+            {loading ? (
                 <section className='catalog'>
                     <h2 className='text-center'>Каталог</h2>
-                    <CategoriesItems />
-                    <div className='row'>
-                        {catalog.map((item) => {
-                            return <CatalogCards data={item} key={item.id} />;
-                        })}
-                    </div>
-                    <MoreShowButton />
+                    <LoaderMainPages />
                 </section>
-            ))}
+            ) : (
+                catalog.length !== 0 && (
+                    <section className='catalog'>
+                        <h2 className='text-center'>Каталог</h2>
+                        <CategoriesItems />
+                        <div className='row'>
+                            {catalog.map((item) => {
+                                return (
+                                    <CatalogCards data={item} key={item.id} />
+                                );
+                            })}
+                        </div>
+                        <MoreShowButton />
+                    </section>
+                )
+            )}
         </>
     );
 };

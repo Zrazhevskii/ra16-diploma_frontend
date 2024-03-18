@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchCardItem } from '../actions/actionsItems';
 import { SizeQuantity } from '../components/SizeQuantity';
+import { BarLoader } from 'react-spinner-animated';
+import 'react-spinner-animated/dist/index.css';
 
 export const Card = () => {
-    const { product } = useSelector((state) => state.card);
+    const { product, loading } = useSelector((state) => state.card);
     const params = useParams();
     const dispatch = useDispatch();
     const [src, setSrc] = useState();
@@ -36,8 +38,19 @@ export const Card = () => {
     //     }
     // }, [images])
 
-    // ***НАДО сделать компоненты на 1) размеры и 2) количество!!!
-    // *** Выделение размера при флаге true у available
+
+    if (loading) {
+        return (
+            <BarLoader
+                text={'Loading...'}
+                center={true}
+                width={'150px'}
+                height={'150px'}
+            />
+        );
+    }
+
+    // console.log(card)
 
     return (
         <section className='catalog-item'>

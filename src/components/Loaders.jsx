@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const LoaderCatalog = () => {
+export const LoaderMainPages = () => {
     return (
         <div className='loader-wrapper'>
             <div className='loader'></div>

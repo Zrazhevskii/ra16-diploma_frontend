@@ -5,37 +5,13 @@ import { CatalogCards } from '../components/CatalogCards';
 import { CategoriesItems } from '../components/CategoriesItems';
 import { addFormValue, clearForm } from '../store/searchFormReduser';
 import { MoreShowButton } from '../components/MoreShowButton';
-import { LoaderCatalog } from '../components/LoaderCatalog';
+import { DoubleOrbit } from 'react-spinner-animated';
+import 'react-spinner-animated/dist/index.css';
 
 export const Catalog = () => {
     const value = useSelector((state) => state.formvalues.value);
     const dispatch = useDispatch();
     const { catalog, loading } = useSelector((state) => state.catalog);
-    // const categories = useSelector((state) => state.categories.categories);
-    // console.log(loading)
-    // let loaderCatalog;
-
-    // if (loading) {
-    //     loaderCatalog
-    // }
-
-    // const loaderCatalog = () => {
-    //     if (!loading) {
-    //         return <LoaderCatalog />;
-    //     } else {
-    //         return (
-    //             <>
-    //                 <CategoriesItems />
-    //                 <div className='row'>
-    //                     {catalog.map((elem) => {
-    //                         return <CatalogCards data={elem} key={elem.id} />;
-    //                     })}
-    //                 </div>
-    //                 <MoreShowButton />
-    //             </>
-    //         );
-    //     }
-    // };
 
     useEffect(() => {
         if (value.length === 0) {
@@ -67,7 +43,12 @@ export const Catalog = () => {
             <>
                 <section className='catalog'>
                     <h2 className='text-center'>Каталог</h2>
-                    <LoaderCatalog/>
+                    <DoubleOrbit
+                        text={'Loading...'}
+                        center={true}
+                        width={'150px'}
+                        height={'150px'}
+                    />
                 </section>
             </>
         );
