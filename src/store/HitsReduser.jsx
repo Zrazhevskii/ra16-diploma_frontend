@@ -6,7 +6,7 @@ import {
 
 const initialStateHits = {
     hits: [],
-    loading: false,
+    loadingHits: false,
     error: '',
 };
 
@@ -15,20 +15,20 @@ const HitsReduser = (state = initialStateHits, action) => {
         case HITS_LOADER_START:
             return {
                 ...state,
-                loading: true,
+                loadingHits: true,
                 error: '',
             };
         case ADD_HITS_ITEMS_SUCCESS:
             return { 
                 ...state,
                 hits: action.payload,
-                loading: false,
+                loadingHits: false,
             };
 
         case HITS_LOADER_ERROR:
             return {
                 ...state,
-                loading: false,
+                loadingHits: false,
                 error: action.payload,
             };
 

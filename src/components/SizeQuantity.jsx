@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -16,7 +16,6 @@ export const SizeQuantity = () => {
     const [quantity, setQuantity] = useState(1);
     const [rates, setRates] = useState(0);
     const { title, price, sizes } = product;
-    // const 
 
     const handleActiveRate = (num) => {
         setRates(num);
