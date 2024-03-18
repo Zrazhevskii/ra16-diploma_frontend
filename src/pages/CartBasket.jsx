@@ -4,8 +4,8 @@ import { Order } from '../components/Order';
 import { useSelector } from 'react-redux';
 
 export const CartBasket = () => {
-    const carts = useSelector((state) => state.cart);
-    console.log(carts)
+    // const carts = useSelector((state) => state.cart);
+    // console.log(carts)
 
     return (
         <>

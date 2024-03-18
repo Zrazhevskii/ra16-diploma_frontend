@@ -7,6 +7,9 @@ import { ADD_FORM_VALUES } from '../actions/actions';
 
 export const Header = () => {
     const value = useSelector((state) => state.formvalues.value);
+    const carts = useSelector((state) => state.cart);
+    const { cart } = carts;
+    // console.log(cart)
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -34,18 +37,18 @@ export const Header = () => {
     };
 
     useEffect(() => {
-        if (!value) {
-            SetStyle('header-controls-cart-full invisible')
-        } else {
+        if (cart.length > 0) {
             SetStyle('header-controls-cart-full')
+        } else {
+            SetStyle('header-controls-cart-full invisible')
         }
-    }, [value])
+    }, [cart])
 
     const handleGoToCart = () => {
         navigate('/cart')
     }
 
-    const sortRef = useRef()
+    // const sortRef = useRef()
 
     // useEffect(() => {
     //     document.body.addEventListener('click', evt => {
@@ -106,7 +109,7 @@ export const Header = () => {
                                         ></div>
                                         {/* <!-- Do programmatic navigation on click to /cart.html --> */}
                                         <div className='header-controls-pic header-controls-cart' onClick={handleGoToCart}>
-                                            <div className={`${style}`}></div>
+                                            <div className={`${style}`}>{cart.length}</div>
                                             <div className='header-controls-cart-menu'></div>
                                         </div>
                                     </div>

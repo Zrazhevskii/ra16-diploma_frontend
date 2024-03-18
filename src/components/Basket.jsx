@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { deletProductCart } from '../store/CartReduser';
 
 export const Basket = () => {
-    const divStyle = {
-        maxWidth: '30rem',
-        margin: '0 auto',
-    };
+    const dispatch = useDispatch()
+    const { cart } = useSelector((state) => state.cart);
+    let num = 0;
+    let newAllSum = 0;
+
+    const handleDeletProduct = ( id) => {
+        dispatch(deletProductCart(id))
+    }
 
     return (
         <section className='cart'>
@@ -22,26 +28,34 @@ export const Basket = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td scope='row'>1</td>
-                        <td>
-                            <a href='/products/1.html'>Босоножки 'MYER'</a>
-                        </td>
-                        <td>18 US</td>
-                        <td>1</td>
-                        <td>34 000 руб.</td>
-                        <td>34 000 руб.</td>
-                        <td>
-                            <button className='btn btn-outline-danger btn-sm'>
-                                Удалить
-                            </button>
-                        </td>
-                    </tr>
+                    {cart &&
+                        cart.map((elem) => {
+                            const { id, title, price, rates, quantity, sum } = elem;
+                            newAllSum = newAllSum + sum;
+                            return (
+                                <tr key={num++}>
+                                    <td scope='row'>{num + 1}</td>
+                                    <td>
+                                        <a href='#'>{title}</a>
+                                    </td>
+                                    <td>{rates}</td>
+                                    <td>{quantity}</td>
+                                    <td>{price} руб.</td>
+                                    <td>{sum} руб.</td>
+                                    <td>
+                                        <button className='btn btn-outline-danger btn-sm' onClick={() => handleDeletProduct(id)}>
+                                            Удалить
+                                        </button>
+                                    </td>
+                                </tr>
+                            );
+                        })}
+
                     <tr>
                         <td colSpan='5' className='text-right'>
-                            Общая стоимость
+                            Общая стоимость: {newAllSum}
                         </td>
-                        <td>34 000 руб.</td>
+                        <td></td>
                     </tr>
                 </tbody>
             </table>
