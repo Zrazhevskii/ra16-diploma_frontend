@@ -36,7 +36,7 @@ export const fetchHitsItems = () => async (dispatch) => {
         .get(URL + '/api/top-sales')
         .then((response) => dispatch(addHitsAction(response.data)))
         .catch((err) => {
-            dispatch(hitsLoaderError(err));
+            dispatch(hitsLoaderError());
             console.log(err);
         });
 };
@@ -113,6 +113,7 @@ export const fetchPersonalCategiories = (id) => async (dispatch) => {
 };
 
 export const fetchShowMoreProducts = (id) => async (dispatch) => {
+    dispatch(catalogLoader());
     if (id === 11) {
         await axios
             .get(URL + `/api/items?offset=${OFFSET}`)
@@ -122,12 +123,9 @@ export const fetchShowMoreProducts = (id) => async (dispatch) => {
                     dispatch(allProducts());
                 }
                 dispatch(addMorePrioducts(response.data));
-
-                // if (fetchNullItems(id)) {
-                //     dispatch(allProducts());
-                // }
             })
             .catch((err) => {
+                dispatch(catalogLoaderError());
                 console.log(err);
             });
         return;
@@ -146,6 +144,7 @@ export const fetchShowMoreProducts = (id) => async (dispatch) => {
             }
         })
         .catch((err) => {
+            dispatch(catalogLoaderError());
             console.log(err);
         });
 };

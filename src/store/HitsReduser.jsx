@@ -7,7 +7,7 @@ import {
 const initialStateHits = {
     hits: [],
     loadingHits: false,
-    error: '',
+    error: false,
 };
 
 const HitsReduser = (state = initialStateHits, action) => {
@@ -16,20 +16,21 @@ const HitsReduser = (state = initialStateHits, action) => {
             return {
                 ...state,
                 loadingHits: true,
-                error: '',
+                error: false,
             };
         case ADD_HITS_ITEMS_SUCCESS:
-            return { 
+            return {
                 ...state,
                 hits: action.payload,
                 loadingHits: false,
+                error: false,
             };
 
         case HITS_LOADER_ERROR:
             return {
                 ...state,
                 loadingHits: false,
-                error: action.payload,
+                error: true,
             };
 
         default:
@@ -42,9 +43,6 @@ export const addHitsAction = (payload) => ({
     payload,
 });
 export const hitsLoader = () => ({ type: HITS_LOADER_START });
-export const hitsLoaderError = () => ({
-    type: HITS_LOADER_ERROR,
-    payload: 'Что-то пошло не так, преегрузите страницу',
-});
+export const hitsLoaderError = () => ({ type: HITS_LOADER_ERROR });
 
 export default HitsReduser;

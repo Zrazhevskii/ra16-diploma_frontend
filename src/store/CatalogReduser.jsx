@@ -9,7 +9,7 @@ import {
 const initialState = {
     catalog: [],
     loading: false,
-    error: '',
+    error: false,
 };
 
 const catalogReduser = (state = initialState, action) => {
@@ -19,6 +19,7 @@ const catalogReduser = (state = initialState, action) => {
                 ...state,
                 catalog: action.payload,
                 loading: false,
+                error: false,
             };
 
         case ADD_MORE_PRODUCTS:
@@ -26,19 +27,20 @@ const catalogReduser = (state = initialState, action) => {
                 ...state,
                 catalog: [...state.catalog, ...action.payload],
                 loading: false,
+                error: false,
             };
 
         case CATALOG_LOADER_START:
             return {
                 ...state,
                 loading: true,
-                error: '',
+                error: false,
             };
         case CATALOG_LOADER_ERROR:
             return {
                 ...state,
                 loading: false,
-                error: action.payload,
+                error: true,
             };
 
         case CLEAR_CATALOG:
@@ -61,7 +63,6 @@ export const catalogLoader = () => ({
 
 export const catalogLoaderError = () => ({
     type: CATALOG_LOADER_ERROR,
-    payload: 'Что-то пошло не так, преегрузите страницу',
 });
 
 export const clearCatalogs = () => ({

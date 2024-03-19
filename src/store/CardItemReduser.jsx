@@ -7,7 +7,7 @@ import {
 const initialState = {
     product: [],
     loading: false,
-    error: '',
+    error: false,
 };
 
 const cardItemReduser = (state = initialState, action) => {
@@ -17,21 +17,21 @@ const cardItemReduser = (state = initialState, action) => {
                 ...state,
                 product: action.payload,
                 loading: false,
-                error: '',
+                error: false,
             };
         
         case CARD_LOADER_START:
             return {
                 ...state,
                 loading: true,
-                error: '',
+                error: false,
             };
         
         case CARD_LOADER_ERROR:
             return {
                 ...state,
                 loading: false,
-                error: action.payload,
+                error: true,
             };
 
         default:
@@ -45,12 +45,11 @@ export const addCard = (payload) => ({
 });
 
 export const cardLoader = () => ({ 
-    type: CARD_LOADER_START 
+    type: CARD_LOADER_START,
 });
 
 export const cardLoaderError = () => ({
     type: CARD_LOADER_ERROR,
-    payload: 'Что-то пошло не так, преегрузите страницу',
 });
 
 export default cardItemReduser;

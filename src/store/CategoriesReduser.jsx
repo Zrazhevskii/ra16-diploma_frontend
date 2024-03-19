@@ -7,7 +7,7 @@ import {
 const initialState = {
     categories: [],
     loader: false,
-    error: '',
+    error: false,
 };
 
 const CategoriesReduser = (state = initialState, action) => {
@@ -17,21 +17,21 @@ const CategoriesReduser = (state = initialState, action) => {
                 ...state,
                 categories: action.payload,
                 loader: false,
-                error: '',
+                error: false,
             };
 
         case CATEGORIES_LOADER_START:
             return {
                 ...state,
                 loader: true,
-                error: '',
+                error: false,
             };
 
         case CATEGORIES_LOADER_ERROR:
             return {
                 ...state,
                 loader: false,
-                error: action.payload,
+                error: true,
             };
 
         default:
@@ -50,7 +50,6 @@ export const categoriesLoader = () => ({
 
 export const categoriesLoaderError = () => ({
     type: CATEGORIES_LOADER_ERROR,
-    payload: 'Что-то пошло не так, преегрузите страницу',
 });
 
 export default CategoriesReduser;

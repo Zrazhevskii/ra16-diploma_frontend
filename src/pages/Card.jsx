@@ -7,7 +7,7 @@ import { BarLoader } from 'react-spinner-animated';
 import 'react-spinner-animated/dist/index.css';
 
 export const Card = () => {
-    const { product, loading } = useSelector((state) => state.card);
+    const { product, loading, error } = useSelector((state) => state.card);
     const params = useParams();
     const dispatch = useDispatch();
     const [src, setSrc] = useState();
@@ -38,6 +38,7 @@ export const Card = () => {
     //     }
     // }, [images])
 
+    if (error) return <Error text={'Что-то пошло не так, перегрузите страницу'}/>
 
     if (loading) {
         return (
@@ -49,8 +50,6 @@ export const Card = () => {
             />
         );
     }
-
-    // console.log(card)
 
     return (
         <section className='catalog-item'>
