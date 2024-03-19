@@ -39,7 +39,7 @@ export const Basket = () => {
                                         <a href='#'>{title}</a>
                                     </td>
                                     <td>{rates}</td>
-                                    <td>{quantity}</td>
+                                    <td>{quantity} шт.</td>
                                     <td>{price} руб.</td>
                                     <td>{sum} руб.</td>
                                     <td>

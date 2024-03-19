@@ -176,3 +176,8 @@ export const fetchNullItems = async (id) => {
         });
     return false
 };
+
+export const fetch = (order) => async (dispatch) => {
+    await axios
+            .post(URL + `/api/${order}`)
+}

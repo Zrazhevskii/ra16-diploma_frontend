@@ -7,6 +7,7 @@ import cardItemReduser from './CardItemReduser'
 import activeCategoriesReduser from './ActiveCategories'
 import BooleanReduser from './BooleanReduser'
 import CartReduser from './CartReduser'
+import OrderReduser from './OrderReduser'
 
 const mainReducer = combineReducers({
     addHits: HitsReduser,
@@ -17,6 +18,7 @@ const mainReducer = combineReducers({
     activeCategories: activeCategoriesReduser,
     bool: BooleanReduser,
     cart: CartReduser,
+    order: OrderReduser,
 })
 
 export default mainReducer
