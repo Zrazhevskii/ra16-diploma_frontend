@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 import { ADD_FORM_VALUES } from '../actions/actions';
 import { fetchCatalogItems } from '../actions/actionsItems';
+import { activeCat } from '../store/ActiveCategories';
 
 export const Header = () => {
     const value = useSelector((state) => state.formvalues.value);
@@ -17,6 +18,7 @@ export const Header = () => {
 
     const hendleShowCatalog = () => {
         dispatch(fetchCatalogItems());
+        dispatch(activeCat(11))
     };
 
     const searchForms = (e) => {

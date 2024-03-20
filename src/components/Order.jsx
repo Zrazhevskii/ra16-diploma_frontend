@@ -35,7 +35,7 @@ export const Order = () => {
     };
 
     const handleSetOrder = () => {
-        dispatch(clearCart())
+        // dispatch(clearCart())
         // if (phone.length === 0 || adress.length === 0)
         //     return dispatch(changeAgreement());
 

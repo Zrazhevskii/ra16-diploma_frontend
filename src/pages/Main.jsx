@@ -30,8 +30,8 @@ export const Main = () => {
             dispatch(localstorage(JSON.parse(localStorage.getItem('cart')) || []))
     }, [])
 
-    console.log('localstorage', JSON.parse(localStorage.getItem('cart')));
-    console.log('корзина', cart)
+    // console.log('localstorage', JSON.parse(localStorage.getItem('cart')));
+    // console.log('корзина', cart)
 
     return (
         <main className='container'>

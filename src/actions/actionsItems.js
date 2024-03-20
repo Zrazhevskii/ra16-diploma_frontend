@@ -23,11 +23,12 @@ import {
 import axios from 'axios';
 
 const URL = 'http://localhost:3500';
-let OFFSET = 6;
 const all = {
     id: 11,
     title: 'Все',
 };
+let OFFSET = 6;
+let OFFSETNULL = 6;
 
 export const fetchHitsItems = () => async (dispatch) => {
     dispatch(hitsLoader());
@@ -113,7 +114,9 @@ export const fetchPersonalCategiories = (id) => async (dispatch) => {
 };
 
 export const fetchShowMoreProducts = (id) => async (dispatch) => {
+    
     dispatch(catalogLoader());
+
     if (id === 11) {
         await axios
             .get(URL + `/api/items?offset=${OFFSET}`)
@@ -121,6 +124,7 @@ export const fetchShowMoreProducts = (id) => async (dispatch) => {
                 OFFSET = OFFSET + 6;
                 if (response.data.length < 6) {
                     dispatch(allProducts());
+                    OFFSET = 6;
                 }
                 dispatch(addMorePrioducts(response.data));
             })
@@ -128,57 +132,58 @@ export const fetchShowMoreProducts = (id) => async (dispatch) => {
                 dispatch(catalogLoaderError());
                 console.log(err);
             });
-        return;
+    } else {
+        await axios
+            .get(URL + `/api/items?categoryId=${id}&offset=${OFFSET}`)
+            .then((response) => {
+                OFFSET = OFFSET + 6;
+                console.log(OFFSET)
+                if (response.data.length < 6) {
+                    dispatch(allProducts());
+                    OFFSET = 6;
+                }
+                dispatch(addMorePrioducts(response.data));
+                dispatch(fetchNullItems(id));
+            })
+            .catch((err) => {
+                dispatch(catalogLoaderError());
+                console.log(err);
+            });
     }
-    await axios
-        .get(URL + `/api/items?categoryId=${id}&offset=${OFFSET}`)
-        .then((response) => {
-            OFFSET = OFFSET + 6;
-            if (response.data.length < 6) {
-                dispatch(allProducts());
-            }
-            dispatch(addMorePrioducts(response.data));
-
-            if (fetchNullItems(id)) {
-                dispatch(allProducts());
-            }
-        })
-        .catch((err) => {
-            dispatch(catalogLoaderError());
-            console.log(err);
-        });
 };
 
-export const fetchNullItems = async (id) => {
+export const fetchNullItems = (id) => async (dispatch) => {
     if (id === 11) {
         await axios
             .get(URL + `/api/items?offset=${OFFSET}`)
             .then((response) => {
+                OFFSETNULL = OFFSETNULL + 6;
                 if (response.data.length === 0) {
-                    return true;
+                    OFFSETNULL = 6;
+                    dispatch(allProducts());
                 }
             })
             .catch((err) => {
                 console.log(err);
             });
-        return false;
+    } else {
+        await axios
+            .get(URL + `/api/items?categoryId=${id}&offset=${OFFSET}`)
+            .then((response) => {
+                OFFSETNULL = OFFSETNULL + 6;
+                if (response.data.length === 0) {
+                    dispatch(allProducts());
+                    OFFSETNULL = 6;
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     }
-    await axios
-        .get(URL + `/api/items?categoryId=${id}&offset=${OFFSET}`)
-        .then((response) => {
-            if (response.data.length === 0) {
-                return true;
-            }
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-    return false;
 };
 
 export const fetchSetOrder = async (order) => {
     // console.log(JSON.stringify(order));
-
     // await axios
     //     .post(URL + `/api/order`, JSON.stringify(order))
     //     .then(function (response) {

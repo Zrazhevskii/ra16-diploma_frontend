@@ -11,16 +11,18 @@ export const Basket = () => {
 
     let localCart = JSON.parse(localStorage.getItem('cart'));
 
-    // useEffect(() => {
-    //     dispatch(localstorage(JSON.parse(localStorage.getItem('cart')) || []))
-    // }, [])
+    useEffect(() => {
+        // if (JSON.parse(localStorage.getItem('cart')) !== null) {
+            dispatch(localstorage(JSON.parse(localStorage.getItem('cart'))))
+        // }
+    }, [])
 
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart));
     }, [cart])
     
-    console.log('localstorage', localCart);
-    console.log('корзина', cart)
+    // console.log('localstorage', localCart);
+    // console.log('корзина', cart)
 
     const handleDeletProduct = (id) => {
         dispatch(deletProductCart(id));

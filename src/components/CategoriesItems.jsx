@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
     fetchPersonalCategiories,
     fetchCatalogItems,
+    fetchNullItems,
 } from '../actions/actionsItems';
 import { activeCat } from '../store/ActiveCategories';
 
@@ -21,6 +22,7 @@ export const CategoriesItems = () => {
 
         dispatch(activeCat(id));
         dispatch(fetchPersonalCategiories(id));
+        dispatch(fetchNullItems(id))
     };
 
     return (

@@ -18,9 +18,9 @@ export const SizeQuantity = () => {
         setRates(num);
     };
 
-    useEffect(() => {
-        dispatch(localstorage(JSON.parse(localStorage.getItem('cart')) || []))
-    }, [])
+    // useEffect(() => {
+    //     dispatch(localstorage(JSON.parse(localStorage.getItem('cart')) || []))
+    // }, [])
 
     // useEffect(() => {
     //     localStorage.setItem('cart', JSON.stringify(cart));
