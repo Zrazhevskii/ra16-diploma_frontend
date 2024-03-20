@@ -1,8 +1,10 @@
 import {
     ADD_PRODUCT_CART_SUCCES,
+    CLEAR_CART,
     DELET_PRODUCT_CART,
     LOADING_CART,
     LOADING_ERROR_CART,
+    LOAD_LOCALSTORAGE_CART,
     // SUM_CART,
     UPDATE_ITEM_CART,
 } from '../actions/actions';
@@ -23,24 +25,32 @@ const CartReduser = (state = initialState, action) => {
                 error: false,
             };
 
-        case UPDATE_ITEM_CART:
-            const indexCart = state.cart.findIndex(
-                (comment) =>
-                    comment.title === action.payload.title &&
-                    comment.rates === action.payload.rates
-            );
-
-            const newCart = state.cart.slice();
-            newCart[indexCart] = action.payload;
-
-            // localStorage.setItem('cart', JSON.stringify(newCart));
-
+        case LOAD_LOCALSTORAGE_CART:
             return {
                 ...state,
-                cart: newCart,
+                cart: action.payload,
                 loading: false,
                 error: false,
-            };
+            }
+
+        case UPDATE_ITEM_CART:
+        const indexCart = state.cart.findIndex(
+            (item) =>
+                item.title === action.payload.title &&
+                item.rates === action.payload.rates
+        );
+
+        const newCart = state.cart.slice();
+        newCart[indexCart] = action.payload;
+
+        // localStorage.setItem('cart', JSON.stringify(newCart));
+
+        return {
+            ...state,
+            cart: newCart,
+            loading: false,
+            error: false,
+        };
 
         case LOADING_CART:
             return {
@@ -56,12 +66,6 @@ const CartReduser = (state = initialState, action) => {
                 error: true,
             };
 
-        // case SUM_CART:
-        //     return {
-        //         ...state,
-        //         allSum: action.payload,
-        //     };
-
         case DELET_PRODUCT_CART:
             let newProductsCart = state.cart.filter(
                 (elem) => elem.id !== action.payload
@@ -73,6 +77,11 @@ const CartReduser = (state = initialState, action) => {
                 loading: false,
                 error: false,
             };
+
+        case CLEAR_CART:
+            localStorage.removeItem('cart');
+            state = initialState;
+            return state;
 
         default:
             return state;
@@ -93,18 +102,22 @@ export const loadingCart = () => ({
     type: LOADING_CART,
 });
 
-// export const sumCart = (payload) => ({
-//     type: SUM_CART,
-//     payload,
-// });
+export const localstorage = (payload) => ({
+    type: LOAD_LOCALSTORAGE_CART,
+    payload,
+})
 
 export const loadingError = () => ({
     type: LOADING_ERROR_CART,
-})
+});
 
 export const deletProductCart = (payload) => ({
     type: DELET_PRODUCT_CART,
     payload,
 });
+
+export const clearCart = () => ({
+    type: CLEAR_CART,
+})
 
 export default CartReduser;

@@ -71,13 +71,13 @@ export const fetchCategoriesItems = () => async (dispatch) => {
 };
 
 export const fetchCardItem = (id) => async (dispatch) => {
-    dispatch(cardLoader())
-    
+    dispatch(cardLoader());
+
     await axios
         .get(URL + `/api/items/${id}`)
         .then((response) => dispatch(addCard(response.data)))
         .catch((err) => {
-            dispatch(cardLoaderError())
+            dispatch(cardLoaderError());
             console.log(err);
         });
 };
@@ -150,7 +150,6 @@ export const fetchShowMoreProducts = (id) => async (dispatch) => {
 };
 
 export const fetchNullItems = async (id) => {
-
     if (id === 11) {
         await axios
             .get(URL + `/api/items?offset=${OFFSET}`)
@@ -162,7 +161,7 @@ export const fetchNullItems = async (id) => {
             .catch((err) => {
                 console.log(err);
             });
-        return false
+        return false;
     }
     await axios
         .get(URL + `/api/items?categoryId=${id}&offset=${OFFSET}`)
@@ -174,10 +173,15 @@ export const fetchNullItems = async (id) => {
         .catch((err) => {
             console.log(err);
         });
-    return false
+    return false;
 };
 
-export const fetch = (order) => async (dispatch) => {
-    await axios
-            .post(URL + `/api/${order}`)
-}
+export const fetchSetOrder = async (order) => {
+    // console.log(JSON.stringify(order));
+
+    // await axios
+    //     .post(URL + `/api/order`, JSON.stringify(order))
+    //     .then(function (response) {
+    //         console.log(response);
+    //     });
+};

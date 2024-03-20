@@ -74,4 +74,12 @@ export const changeAgreement = () => ({
     type: CHANGE_AGREEMENT,
 });
 
+export const orderLoader = () => ({
+    type: LOADING_ORDER,
+});
+
+export const orderLoaderError = () => ({
+    type: LOADING_ORDER_ERROR,
+});
+
 export default OrderReduser;

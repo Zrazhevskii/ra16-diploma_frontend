@@ -12,7 +12,6 @@ export const Header = () => {
     const { cart } = carts;
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
     const [Visible, setVisible] = useState(true); //открытие/закрытие формы
     const [style, SetStyle] = useState(''); //красный шильдик на эмблеме корзины, появление/исчезание
 
@@ -40,7 +39,7 @@ export const Header = () => {
     };
 
     useEffect(() => {
-        if (cart.length > 0) {
+        if (cart.length) {
             SetStyle('header-controls-cart-full');
         } else {
             SetStyle('header-controls-cart-full invisible');
@@ -117,7 +116,7 @@ export const Header = () => {
                                             onClick={handleGoToCart}
                                         >
                                             <div className={`${style}`}>
-                                                {cart.length}
+                                                {cart && cart.length}
                                             </div>
                                             <div className='header-controls-cart-menu'></div>
                                         </div>

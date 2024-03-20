@@ -1,11 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import {
-    addCartProdact,
-    updateCartProducts,
-} from '../store/CartReduser';
-
+import { addCartProdact, updateCartProducts } from '../store/CartReduser';
+import { localstorage } from '../store/CartReduser';
 
 export const SizeQuantity = () => {
     const { product } = useSelector((state) => state.card);
@@ -15,13 +12,21 @@ export const SizeQuantity = () => {
     const dispatch = useDispatch();
     const [quantity, setQuantity] = useState(1);
     const [rates, setRates] = useState(0);
-    const { title, price, sizes } = product;
+    const { id, title, price, sizes } = product;
 
     const handleActiveRate = (num) => {
         setRates(num);
     };
 
-    
+    useEffect(() => {
+        dispatch(localstorage(JSON.parse(localStorage.getItem('cart')) || []))
+    }, [])
+
+    // useEffect(() => {
+    //     localStorage.setItem('cart', JSON.stringify(cart));
+    // }, [cart])
+    // console.log('корзина', cart)
+
     const handleQuantity = (e) => {
         if (quantity === 0) {
             alert('Нельзя заказать меньше одной пары((');
@@ -36,9 +41,19 @@ export const SizeQuantity = () => {
         }
     };
 
+    // let localCart = JSON.parse(localStorage.getItem('cart'))
+    // const { id, title, price, sizes } = localCart;
+    // console.log(localCart)
+
+    // if (localCart.length !== null) {
+
+    // }
+    // const local = localStorage.removeItem('cart');
+    // console.log(local);
+
     const handleCart = () => {
         let cartItem = {
-            id: crypto.randomUUID(),
+            id,
             title,
             rates,
             quantity,
@@ -46,33 +61,32 @@ export const SizeQuantity = () => {
             sum: price * quantity,
         };
 
-        const found = cart.some(
-            (elem) =>
-                elem.title === cartItem.title && elem.rates === cartItem.rates
+        const index = cart.findIndex(
+            (item) =>
+                item.title === cartItem.title && item.rates === cartItem.rates
         );
 
-        if (found) {
-            cart.map((item) => {
-                
-                if (
-                    item.title === cartItem.title &&
-                    item.rates === cartItem.rates
-                ) {
-                    let tem = {
-                        id: crypto.randomUUID(),
-                        title,
-                        rates,
-                        quantity: cartItem.quantity + item.quantity,
-                        price,
-                        sum: cartItem.sum + item.sum,
-                    };
+        if (index !== -1) {
+            let tem = {
+                id,
+                title,
+                rates,
+                quantity: cartItem.quantity + cart[index].quantity,
+                price,
+                sum: cartItem.sum + cart[index].sum,
+            };
 
-                    return dispatch(updateCartProducts(tem));
-                }
-            });
-        } else {
-            dispatch(addCartProdact(cartItem));
+            navi('/cart');
+
+            return dispatch(updateCartProducts(tem));
         }
+
+        dispatch(addCartProdact(cartItem));
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+        // console.log(cart);
+        // localStorage.removeItem('cart');
+        // console.log(local);
 
         navi('/cart');
     };
@@ -85,7 +99,7 @@ export const SizeQuantity = () => {
                     Размеры в наличии:
                     {sizes &&
                         sizes.map((elem) => {
-                            let { size, available } = elem
+                            let { size, available } = elem;
                             return (
                                 <span
                                     className={

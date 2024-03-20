@@ -331,3 +331,7 @@ h2, .h2 {
       transform: rotate(360deg);
   }
 }
+
+.cartnull {
+  text-align: center;
+}
