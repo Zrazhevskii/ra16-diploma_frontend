@@ -1,36 +1,30 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { deletProductCart } from '../store/CartReduser';
-import { localstorage } from '../store/CartReduser';
+// import { localstorage } from '../store/CartReduser';
 
 export const Basket = () => {
     const dispatch = useDispatch();
     const { cart } = useSelector((state) => state.cart);
+    const { orderSucces } = useSelector(state => state.bool)
     let num = 0;
     let newAllSum = 0;
-
-    let localCart = JSON.parse(localStorage.getItem('cart'));
-
-    useEffect(() => {
-        // if (JSON.parse(localStorage.getItem('cart')) !== null) {
-            dispatch(localstorage(JSON.parse(localStorage.getItem('cart'))))
-        // }
-    }, [])
-
-    useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify(cart));
-    }, [cart])
-    
-    // console.log('localstorage', localCart);
-    // console.log('корзина', cart)
 
     const handleDeletProduct = (id) => {
         dispatch(deletProductCart(id));
     };
 
+    
+
+    if (cart.length === 0 && orderSucces) {
+        return (
+            <h2 className='order-succes'>Вы успешно оформили заказ! Мы свяжемся с вами для уточнения деталей.</h2>
+        )
+    } 
+    
     if (cart.length === 0) {
         return (
-            <h2 className='cartnull'>Пока в корзине ничего нет</h2>
+             <h2 className='cartnull'>Пока в корзине ничего нет</h2>
         )
     }
 

@@ -1,16 +1,48 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Basket } from '../components/Basket';
 import { Order } from '../components/Order';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { localstorage } from '../store/CartReduser';
+import { HalfMalf } from 'react-spinner-animated';
+import 'react-spinner-animated/dist/index.css';
+import { Error } from '../components/Error'
 
 export const CartBasket = () => {
-    // const carts = useSelector((state) => state.cart);
-    // console.log(carts)
+    const { cart } = useSelector(state => state.cart);
+    const { loading, error } = useSelector(state => state.order)
+    const dispatch = useDispatch();
+    // let localCart = JSON.parse(localStorage.getItem('cart'));
+
+    useEffect(() => {
+        dispatch(localstorage(JSON.parse(localStorage.getItem('cart'))));
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }, [cart]);
+
+
+    if (loading) {
+        return (
+            <HalfMalf
+                text={'Loading...'}
+                center={true}
+                width={'150px'}
+                height={'150px'}
+            />
+        );
+    }
+
+    if (error) {
+        return (
+            <Error text={'Ой, что-то в корзине сломалось, мы сохраним ваши товары, перезрузите страницу'}/>
+        )
+    }
 
     return (
         <>
-            <Basket/>
-            <Order/>
+            <Basket />
+            <Order />
         </>
     );
 };

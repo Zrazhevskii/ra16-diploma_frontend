@@ -18,6 +18,8 @@ export const Card = () => {
         dispatch(fetchCardItem(id));
     }, []);
 
+    // dispatch(orderFalse())
+
     const {
         title,
         images,

@@ -5,12 +5,11 @@ import {
     LOADING_CART,
     LOADING_ERROR_CART,
     LOAD_LOCALSTORAGE_CART,
-    // SUM_CART,
     UPDATE_ITEM_CART,
 } from '../actions/actions';
 
 const initialState = {
-    cart: [],
+    cart: JSON.parse(localStorage.getItem('cart')) || [],
     loading: false,
     error: false,
 };
@@ -70,7 +69,7 @@ const CartReduser = (state = initialState, action) => {
             let newProductsCart = state.cart.filter(
                 (elem) => elem.id !== action.payload
             );
-            // localStorage.setItem('cart', JSON.stringify(newProductsCart));
+            localStorage.setItem('cart', JSON.stringify(newProductsCart));
             return {
                 ...state,
                 cart: newProductsCart,
@@ -79,9 +78,13 @@ const CartReduser = (state = initialState, action) => {
             };
 
         case CLEAR_CART:
-            localStorage.removeItem('cart');
-            state = initialState;
-            return state;
+            let newCarts = [];
+            return {
+                ...state,
+                cart: newCarts,
+                loading: false,
+                error: false,
+            };;
 
         default:
             return state;

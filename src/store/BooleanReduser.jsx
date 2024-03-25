@@ -1,7 +1,8 @@
-import { ALL_PRODUCTS, NEXT_PRODUCTS } from '../actions/actions'
+import { ALL_PRODUCTS, NEXT_PRODUCTS, ORDER_FALSE, ORDER_SUCCES } from '../actions/actions'
 
 const initialState = {
-    allProducts: false
+    allProducts: false,
+    orderSucces: false,
 }
 
 const BooleanReduser = (state = initialState, action) => {
@@ -10,12 +11,28 @@ const BooleanReduser = (state = initialState, action) => {
             return {
                 ...state,
                 allProducts: true,
+                orderSucces: false,
             }
 
         case NEXT_PRODUCTS:
             return {
                 ...state,
                 allProducts: false,
+                orderSucces: false,
+            }
+
+        case ORDER_SUCCES:
+            return {
+                ...state,
+                allProducts: false,
+                orderSucces: true,
+            }
+
+        case ORDER_FALSE:
+            return {
+                ...state,
+                allProducts: false,
+                orderSucces: false,
             }
         
         default:
@@ -30,5 +47,13 @@ export const allProducts = () => ({
 export const nextProducts = () => ({
     type: NEXT_PRODUCTS
 });
+
+export const orderSetSucces = () => ({
+    type: ORDER_SUCCES,
+});
+
+export const orderFalse = () => ({
+    type: ORDER_FALSE,
+})
 
 export default BooleanReduser;

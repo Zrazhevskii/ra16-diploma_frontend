@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addCartProdact, updateCartProducts } from '../store/CartReduser';
-import { localstorage } from '../store/CartReduser';
 
 export const SizeQuantity = () => {
     const { product } = useSelector((state) => state.card);
@@ -41,16 +40,6 @@ export const SizeQuantity = () => {
         }
     };
 
-    // let localCart = JSON.parse(localStorage.getItem('cart'))
-    // const { id, title, price, sizes } = localCart;
-    // console.log(localCart)
-
-    // if (localCart.length !== null) {
-
-    // }
-    // const local = localStorage.removeItem('cart');
-    // console.log(local);
-
     const handleCart = () => {
         let cartItem = {
             id,
@@ -84,10 +73,6 @@ export const SizeQuantity = () => {
         dispatch(addCartProdact(cartItem));
 
         localStorage.setItem('cart', JSON.stringify(cart));
-        // console.log(cart);
-        // localStorage.removeItem('cart');
-        // console.log(local);
-
         navi('/cart');
     };
 

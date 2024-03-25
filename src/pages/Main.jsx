@@ -26,8 +26,7 @@ export const Main = () => {
         }, [])
 
     useEffect(() => {
-        // JSON.parse(localStorage.getItem('cart'))
-            dispatch(localstorage(JSON.parse(localStorage.getItem('cart')) || []))
+            dispatch(localstorage(JSON.parse(localStorage.getItem('cart'))))
     }, [])
 
     // console.log('localstorage', JSON.parse(localStorage.getItem('cart')));

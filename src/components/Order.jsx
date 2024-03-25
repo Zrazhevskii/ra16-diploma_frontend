@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addAdress, addPhone, changeAgreement } from '../store/OrderReduser';
 import { fetchSetOrder } from '../actions/actionsItems';
 import { clearCart } from '../store/CartReduser';
+import { orderSetSucces } from '../store/BooleanReduser';
 
 const validate = (phone) => {
     return /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/.test(phone);
@@ -10,13 +11,12 @@ const validate = (phone) => {
 
 export const Order = () => {
     const dispatch = useDispatch();
-    const { phone, adress, agreement, loading, error } = useSelector(
+    const { phone, adress, agreement } = useSelector(
         (state) => state.order
     );
-    // let localCart = JSON.parse(localStorage.getItem('cart'));
 
     const cart = useSelector((state) => state.cart.cart);
-
+    
     const handleSubmit = (e) => {
         e.preventDefault();
     };
@@ -30,34 +30,37 @@ export const Order = () => {
     };
 
     const handleAdress = (value) => {
-        // console.log(e.target)
         dispatch(addAdress(value));
     };
 
     const handleSetOrder = () => {
-        // dispatch(clearCart())
-        // if (phone.length === 0 || adress.length === 0)
-        //     return dispatch(changeAgreement());
+        if (phone.length === 0 || adress.length === 0)
+            return dispatch(changeAgreement());
 
-        // const newOrder = {
-        //     owner: {
-        //         phone: phone,
-        //         adress: adress,
-        //     },
-        //     items: cart.map((elem) => ({
-        //         id: elem.id,
-        //         price: elem.price,
-        //         count: elem.quantity,
-        //     })),
-        // };
+        const newOrder = {
+            owner: {
+                phone: phone,
+                adress: adress,
+            },
+            items: cart.map((elem) => ({
+                id: elem.id,
+                price: elem.price,
+                count: elem.quantity,
+            })),
+        };
 
-        // if (validate(phone)) {
-        //     dispatch(fetchSetOrder(newOrder));
-        //     dispatch(clearCart())
-        //     return;
-        // } else {
-        //     alert('Номер телефона должен содержать только цифры');
-        // }
+        if (validate(phone)) {
+            // dispatch(clearCart())
+            // localStorage.removeItem('cart');
+            dispatch(fetchSetOrder(newOrder));
+            dispatch(orderSetSucces())
+            // dispatch(orderSucces())
+            return;
+        } else {
+            alert('Номер телефона должен содержать только цифры');
+        }
+
+        
     };
 
     const divStyle = {
@@ -65,7 +68,9 @@ export const Order = () => {
         margin: '0 auto',
     };
 
-    if (cart.length !== 0 ) {
+    // if (orderSucces) return <OrderSucces/>
+
+    if (cart.length !== 0) {
         return (
             <section className='order'>
                 <h2 className='text-center'>Оформить заказ</h2>

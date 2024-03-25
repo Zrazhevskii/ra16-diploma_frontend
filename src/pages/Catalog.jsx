@@ -6,7 +6,7 @@ import { CategoriesItems } from '../components/CategoriesItems';
 import { addFormValue, clearForm } from '../store/searchFormReduser';
 import { MoreShowButton } from '../components/MoreShowButton';
 import { DoubleOrbit } from 'react-spinner-animated';
-import 'react-spinner-animated/dist/index.css';
+
 
 export const Catalog = () => {
     const value = useSelector((state) => state.formvalues.value);
@@ -41,15 +41,25 @@ export const Catalog = () => {
     if (loading) {
         return (
             <>
-                <section className='catalog'>
-                    <h2 className='text-center'>Каталог</h2>
-                    <DoubleOrbit
-                        text={'Loading...'}
-                        center={true}
-                        width={'150px'}
-                        height={'150px'}
+                <h2 className='text-center'>Каталог</h2>
+                <form
+                    className='catalog-search-form form-inline'
+                    onSubmit={(e) => handleSubmit(e)}
+                >
+                    <input
+                        className='form-control'
+                        placeholder='Поиск'
+                        value={value}
+                        onChange={(e) => handleSearch(e)}
+                        onKeyDown={(e) => handleKeyPress(e)}
                     />
-                </section>
+                </form>
+                <DoubleOrbit
+                    text={'Loading...'}
+                    center={true}
+                    width={'150px'}
+                    height={'150px'}
+                />
             </>
         );
     }

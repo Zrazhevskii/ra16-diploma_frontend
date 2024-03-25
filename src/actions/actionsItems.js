@@ -1,5 +1,9 @@
 import { addCard, cardLoader, cardLoaderError } from '../store/CardItemReduser';
-import { allProducts, nextProducts } from '../store/BooleanReduser';
+import {
+    allProducts,
+    nextProducts,
+    orderSetSucces,
+} from '../store/BooleanReduser';
 import {
     addCatalogItems,
     addMorePrioducts,
@@ -21,6 +25,12 @@ import {
 } from '../store/HitsReduser';
 
 import axios from 'axios';
+import {
+    clearOrder,
+    orderLoader,
+    orderLoaderError,
+} from '../store/OrderReduser';
+import { clearCart } from '../store/CartReduser';
 
 const URL = 'http://localhost:3500';
 const all = {
@@ -114,7 +124,6 @@ export const fetchPersonalCategiories = (id) => async (dispatch) => {
 };
 
 export const fetchShowMoreProducts = (id) => async (dispatch) => {
-    
     dispatch(catalogLoader());
 
     if (id === 11) {
@@ -137,7 +146,6 @@ export const fetchShowMoreProducts = (id) => async (dispatch) => {
             .get(URL + `/api/items?categoryId=${id}&offset=${OFFSET}`)
             .then((response) => {
                 OFFSET = OFFSET + 6;
-                console.log(OFFSET)
                 if (response.data.length < 6) {
                     dispatch(allProducts());
                     OFFSET = 6;
@@ -182,11 +190,24 @@ export const fetchNullItems = (id) => async (dispatch) => {
     }
 };
 
-export const fetchSetOrder = async (order) => {
-    // console.log(JSON.stringify(order));
-    // await axios
-    //     .post(URL + `/api/order`, JSON.stringify(order))
-    //     .then(function (response) {
-    //         console.log(response);
-    //     });
+export const fetchSetOrder = (order) => async (dispatch) => {
+    dispatch(orderLoader());
+
+    await axios
+        .post(URL + `/api/order`, order)
+        .then((response) => {
+            if (response.status === 204) {
+                dispatch(clearOrder());
+                dispatch(clearCart());
+                dispatch(orderSetSucces());
+                localStorage.removeItem('cart');
+                console.log(response);
+            } else if (response.status === 400) {
+                dispatch(orderLoaderError());
+            }
+        })
+        .catch((err) => {
+            dispatch(orderLoaderError());
+            console.log(err);
+        });
 };
