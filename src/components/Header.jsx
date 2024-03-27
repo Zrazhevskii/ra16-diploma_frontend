@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ADD_FORM_VALUES } from '../actions/actions';
 import { fetchCatalogItems } from '../actions/actionsItems';
 import { activeCat } from '../store/ActiveCategories';
-import { allProducts } from '../store/BooleanReduser';
 import { clearForm } from '../store/searchFormReduser';
 
 export const Header = () => {
@@ -19,13 +18,12 @@ export const Header = () => {
     const [style, SetStyle] = useState(''); //красный шильдик на эмблеме корзины, появление/исчезание
 
     const hendleShowCatalog = () => {
-        dispatch(clearForm())
+        dispatch(clearForm());
         dispatch(fetchCatalogItems());
         dispatch(activeCat(11));
     };
 
     const searchForms = (e) => {
-
         dispatch({ type: ADD_FORM_VALUES, payload: e.target.value });
     };
 
@@ -37,7 +35,6 @@ export const Header = () => {
         if (value.length > 0) {
             navigate('/catalog');
             setVisible(!Visible);
-            // dispatch(allProducts())
         } else if (!value) {
             setVisible(!Visible);
         }
@@ -45,10 +42,10 @@ export const Header = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-    }
+    };
 
     const handleKeyPress = (e) => {
-        if (e.key === 'Enter') {
+        if (e.key === 'Enter' && value) {
             navigate('/catalog');
             setVisible(!Visible);
         }

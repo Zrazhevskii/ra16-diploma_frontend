@@ -104,7 +104,6 @@ export const fetchSearchCards = (str) => async (dispatch) => {
         .then((response) => {
             if (response.data.length < 6) {
                 dispatch(allProducts());
-                dispatch(clearForm())
             }
             dispatch(addCatalogItems(response.data));
         })
@@ -124,7 +123,6 @@ export const fetchShowMoreSearchForm = (str) => async (dispatch) => {
                 dispatch(clearForm())
             }
             dispatch(addMorePrioducts(response.data));
-            // dispatch(fetchNullItems(id));
         })
 };
 

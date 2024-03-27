@@ -84,6 +84,6 @@ export const orderLoaderError = () => ({
 
 export const clearOrder = () => ({
     type: CLEAR_ORDER,
-})
+});
 
 export default OrderReduser;

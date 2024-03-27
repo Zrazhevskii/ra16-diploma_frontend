@@ -47,7 +47,7 @@ export const Hits = () => {
                                 );
                             })}
                         </div>
-                        { loading && <LoaderMainPages />}
+                        {loading && <LoaderMainPages />}
                         <MoreShowButton />
                     </section>
                 )

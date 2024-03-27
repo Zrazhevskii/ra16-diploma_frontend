@@ -19,14 +19,14 @@ const cardItemReduser = (state = initialState, action) => {
                 loading: false,
                 error: false,
             };
-        
+
         case CARD_LOADER_START:
             return {
                 ...state,
                 loading: true,
                 error: false,
             };
-        
+
         case CARD_LOADER_ERROR:
             return {
                 ...state,
@@ -44,7 +44,7 @@ export const addCard = (payload) => ({
     payload,
 });
 
-export const cardLoader = () => ({ 
+export const cardLoader = () => ({
     type: CARD_LOADER_START,
 });
 

@@ -1,36 +1,34 @@
 import React, { useEffect } from 'react';
 import banner from '../img/banner.jpg';
 import { Outlet } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchCatalogItems, fetchCategoriesItems, fetchHitsItems } from '../actions/actionsItems';
+import { useDispatch } from 'react-redux';
+import {
+    fetchCatalogItems,
+    fetchCategoriesItems,
+    fetchHitsItems,
+} from '../actions/actionsItems';
 import { activeCat } from '../store/ActiveCategories';
 import { localstorage } from '../store/CartReduser';
 
 export const Main = () => {
-    const dispatch = useDispatch()
-    const cart = useSelector(state => state.cart.cart)
-    // console.log('localstorage', JSON.parse(localStorage.getItem('cart')));
-    // console.log('корзина', cart)
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchHitsItems())
-    }, [])
+        dispatch(fetchHitsItems());
+    }, []);
 
     useEffect(() => {
-        dispatch(activeCat(11))
-        dispatch(fetchCategoriesItems())
-    }, [])
+        dispatch(activeCat(11));
+        dispatch(fetchCategoriesItems());
+    }, []);
 
     useEffect(() => {
-            dispatch(fetchCatalogItems())
-        }, [])
+        dispatch(fetchCatalogItems());
+    }, []);
 
     useEffect(() => {
-            dispatch(localstorage(JSON.parse(localStorage.getItem('cart'))))
-    }, [])
-
-    // console.log('localstorage', JSON.parse(localStorage.getItem('cart')));
-    // console.log('корзина', cart)
+        dispatch(localstorage(JSON.parse(localStorage.getItem('cart'))));
+    }, []);
 
     return (
         <main className='container'>

@@ -5,11 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { localstorage } from '../store/CartReduser';
 import { HalfMalf } from 'react-spinner-animated';
 import 'react-spinner-animated/dist/index.css';
-import { Error } from '../components/Error'
+import { Error } from '../components/Error';
 
 export const CartBasket = () => {
-    const { cart } = useSelector(state => state.cart);
-    const { loading, error } = useSelector(state => state.order)
+    const { cart } = useSelector((state) => state.cart);
+    const { loading, error } = useSelector((state) => state.order);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -20,11 +20,10 @@ export const CartBasket = () => {
         localStorage.setItem('cart', JSON.stringify(cart));
     }, [cart]);
 
-
     if (loading) {
         return (
             <HalfMalf
-                text={'Loading...'}
+                text={'Отправляем заказ...'}
                 center={true}
                 width={'150px'}
                 height={'150px'}
@@ -34,8 +33,12 @@ export const CartBasket = () => {
 
     if (error) {
         return (
-            <Error text={'Ой, что-то в корзине сломалось, мы сохраним ваши товары, перезрузите страницу'}/>
-        )
+            <Error
+                text={
+                    'Ой, что-то в корзине сломалось, мы сохраним выбранные товары, перезрузите страницу'
+                }
+            />
+        );
     }
 
     return (

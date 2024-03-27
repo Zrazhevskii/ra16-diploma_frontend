@@ -1,4 +1,10 @@
-import { ELEVEN_ACTIVE, FIFTEEN_ACTIVE, FOURTEEN_ACTIVE, THIRTEEN_ACTIVE, TWELVE_ACTIVE } from '../actions/actions';
+import {
+    ELEVEN_ACTIVE,
+    FIFTEEN_ACTIVE,
+    FOURTEEN_ACTIVE,
+    THIRTEEN_ACTIVE,
+    TWELVE_ACTIVE,
+} from '../actions/actions';
 
 const initialState = {
     11: 'nav-link',
@@ -12,7 +18,6 @@ const initialState = {
 const activeCategoriesReduser = (state = initialState, action) => {
     switch (action.type) {
         case ELEVEN_ACTIVE:
-            // console.log(action.type)
             return {
                 11: 'nav-link active',
                 12: 'nav-link',

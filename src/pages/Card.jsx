@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchCardItem } from '../actions/actionsItems';
@@ -10,8 +10,6 @@ export const Card = () => {
     const { product, loading, error } = useSelector((state) => state.card);
     const params = useParams();
     const dispatch = useDispatch();
-    const [src, setSrc] = useState();
-    // const [avail, setAvail] = useState(true);
     const id = parseInt(params.id);
 
     useEffect(() => {
@@ -30,19 +28,12 @@ export const Card = () => {
         reason,
     } = product;
 
-    // useEffect(() => {
-    //     if (sizes.find((elem) => elem.available === true) === undefined) {
-    //         return setAvail(undefined)
-    //     }
-    //     setAvail(true)
-    // }, [product]);
-
-
-    const availability = sizes.find((elem) => elem.available === true);
-    // console.log(availability)
-    // console.log(availability)
-
-    // console.log(product.sizes);
+    let availability;
+    if (sizes) {
+        availability = sizes.find((elem) => elem.available === true);
+    } else {
+        availability = undefined;
+    }
 
     if (error)
         return <Error text={'Что-то пошло не так, перегрузите страницу'} />;
@@ -64,7 +55,7 @@ export const Card = () => {
             <div className='row'>
                 <div className='col-5'>
                     <img
-                        // src={`${images[0]}`}
+                        src={images && images[0]}
                         className='img-fluid'
                         alt={title}
                     />
@@ -103,7 +94,6 @@ export const Card = () => {
                     ) : (
                         <SizeQuantity />
                     )}
-                    {/* <SizeQuantity /> */}
                 </div>
             </div>
         </section>

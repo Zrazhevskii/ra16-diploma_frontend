@@ -71,11 +71,7 @@ export const clearCatalogs = () => ({
 
 export const addMorePrioducts = (payload) => ({
     type: ADD_MORE_PRODUCTS,
-    payload
+    payload,
 });
-
-// export const allProducts = () => ({
-//     type: ALL_PRODUCTS,
-// })
 
 export default catalogReduser;

@@ -22,7 +22,7 @@ export const CategoriesItems = () => {
 
         dispatch(activeCat(id));
         dispatch(fetchPersonalCategiories(id));
-        dispatch(fetchNullItems(id))
+        dispatch(fetchNullItems(id));
     };
 
     return (

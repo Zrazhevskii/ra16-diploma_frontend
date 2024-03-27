@@ -1,13 +1,13 @@
-import { combineReducers } from 'redux'
-import HitsReduser from './HitsReduser'
-import catalogReduser from './CatalogReduser'
-import CategoriesReduser from './CategoriesReduser'
-import searchFormReduser from './searchFormReduser'
-import cardItemReduser from './CardItemReduser'
-import activeCategoriesReduser from './ActiveCategories'
-import BooleanReduser from './BooleanReduser'
-import CartReduser from './CartReduser'
-import OrderReduser from './OrderReduser'
+import { combineReducers } from 'redux';
+import HitsReduser from './HitsReduser';
+import catalogReduser from './CatalogReduser';
+import CategoriesReduser from './CategoriesReduser';
+import searchFormReduser from './searchFormReduser';
+import cardItemReduser from './CardItemReduser';
+import activeCategoriesReduser from './ActiveCategories';
+import BooleanReduser from './BooleanReduser';
+import CartReduser from './CartReduser';
+import OrderReduser from './OrderReduser';
 
 const mainReducer = combineReducers({
     addHits: HitsReduser,
@@ -19,6 +19,6 @@ const mainReducer = combineReducers({
     bool: BooleanReduser,
     cart: CartReduser,
     order: OrderReduser,
-})
+});
 
-export default mainReducer
+export default mainReducer;

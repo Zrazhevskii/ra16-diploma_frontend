@@ -2,7 +2,6 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 export const CatalogCards = ({ data }) => {
-
     const { id, title, images, price } = data;
 
     return (

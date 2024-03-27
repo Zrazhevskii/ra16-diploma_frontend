@@ -22,8 +22,8 @@ function App() {
                     <Route path='/catalog' element={<Catalog />} />
                     <Route path='/contacts' element={<Contacts />} />
                     <Route path='/items/:id' element={<Card />} />
-                    <Route path='/cart' element={<CartBasket />}/>
-                    <Route path='*' element={<NoNamePages/>}/>
+                    <Route path='/cart' element={<CartBasket />} />
+                    <Route path='*' element={<NoNamePages />} />
                 </Route>
             </Routes>
             <Footer />

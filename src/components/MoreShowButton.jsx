@@ -1,5 +1,8 @@
 import React from 'react';
-import { fetchNullItems, fetchSearchCards, fetchShowMoreProducts, fetchShowMoreSearchForm } from '../actions/actionsItems';
+import {
+    fetchShowMoreProducts,
+    fetchShowMoreSearchForm,
+} from '../actions/actionsItems';
 import { useDispatch, useSelector } from 'react-redux';
 
 export const MoreShowButton = () => {
@@ -7,22 +10,17 @@ export const MoreShowButton = () => {
     const { allProducts } = useSelector((state) => state.bool);
     const actives = useSelector((state) => state.activeCategories);
     const value = useSelector((state) => state.formvalues.value);
-    // console.log(value.length)
     const { active } = actives;
 
     const handleShowMoreProducts = (e) => {
         e.preventDefault();
 
         if (value.length !== 0 && !allProducts) {
-            // console.log('я в кнопке')
-            dispatch(fetchShowMoreSearchForm(value))
-            return
+            dispatch(fetchShowMoreSearchForm(value));
+            return;
         }
         dispatch(fetchShowMoreProducts(active));
-        // dispatch(fetchNullItems(active))
     };
-
-    // console.log(allProducts)
 
     return (
         !allProducts && (

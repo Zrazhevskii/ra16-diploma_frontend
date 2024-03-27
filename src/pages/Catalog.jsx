@@ -3,10 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchCatalogItems, fetchSearchCards } from '../actions/actionsItems';
 import { CatalogCards } from '../components/CatalogCards';
 import { CategoriesItems } from '../components/CategoriesItems';
-import { addFormValue, clearForm } from '../store/searchFormReduser';
+import { addFormValue } from '../store/searchFormReduser';
 import { MoreShowButton } from '../components/MoreShowButton';
 import { DoubleOrbit } from 'react-spinner-animated';
-
 
 export const Catalog = () => {
     const value = useSelector((state) => state.formvalues.value);
@@ -34,7 +33,6 @@ export const Catalog = () => {
     const handleKeyPress = (e) => {
         if (e.key === 'Enter') {
             dispatch(fetchSearchCards(value));
-            // dispatch(clearForm());
         }
     };
 

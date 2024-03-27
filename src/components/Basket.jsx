@@ -1,13 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { deletProductCart } from '../store/CartReduser';
 import { OrderSucces } from '../pages/OrderSucces';
-// import { localstorage } from '../store/CartReduser';
 
 export const Basket = () => {
     const dispatch = useDispatch();
     const { cart } = useSelector((state) => state.cart);
-    const { orderSucces } = useSelector(state => state.bool)
+    const { orderSucces } = useSelector((state) => state.bool);
     let num = 0;
     let newAllSum = 0;
 
@@ -15,19 +14,12 @@ export const Basket = () => {
         dispatch(deletProductCart(id));
     };
 
-    
-
     if (cart.length === 0 && orderSucces) {
-        return (
-            <OrderSucces/>
-            // <h2 className='order-succes'>Вы успешно оформили заказ! Мы свяжемся с вами для уточнения деталей.</h2>
-        )
-    } 
-    
+        return <OrderSucces />;
+    }
+
     if (cart.length === 0) {
-        return (
-             <h2 className='cartnull'>Пока в корзине ничего нет</h2>
-        )
+        return <h2 className='cartnull'>Пока в корзине ничего нет</h2>;
     }
 
     if (cart.length !== 0) {

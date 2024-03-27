@@ -19,7 +19,7 @@ export const SizeQuantity = () => {
 
     useEffect(() => {
         setQuantity(1);
-    }, [rates])
+    }, [rates]);
 
     const handleQuantity = (e) => {
         if (quantity === 0) {
@@ -80,20 +80,22 @@ export const SizeQuantity = () => {
                     {sizes &&
                         sizes.map((elem) => {
                             let { size, available } = elem;
-                            return available && (
-                                <span
-                                    className={
-                                        size === rates && available
-                                            ? 'catalog-item-size selected'
-                                            : 'catalog-item-size'
-                                    }
-                                    key={elem.size}
-                                    onClick={() => {
-                                        handleActiveRate(elem.size);
-                                    }}
-                                >
-                                    {elem.size}
-                                </span>
+                            return (
+                                available && (
+                                    <span
+                                        className={
+                                            size === rates && available
+                                                ? 'catalog-item-size selected'
+                                                : 'catalog-item-size'
+                                        }
+                                        key={elem.size}
+                                        onClick={() => {
+                                            handleActiveRate(elem.size);
+                                        }}
+                                    >
+                                        {elem.size}
+                                    </span>
+                                )
                             );
                         })}
                 </p>

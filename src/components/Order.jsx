@@ -2,7 +2,6 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addAdress, addPhone, changeAgreement } from '../store/OrderReduser';
 import { fetchSetOrder } from '../actions/actionsItems';
-import { clearCart } from '../store/CartReduser';
 import { orderSetSucces } from '../store/BooleanReduser';
 
 const validate = (phone) => {
