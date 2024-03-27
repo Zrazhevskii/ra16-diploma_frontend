@@ -10,21 +10,16 @@ export const SizeQuantity = () => {
     const navi = useNavigate();
     const dispatch = useDispatch();
     const [quantity, setQuantity] = useState(1);
-    const [rates, setRates] = useState(0);
+    const [rates, setRates] = useState(null);
     const { id, title, price, sizes } = product;
 
     const handleActiveRate = (num) => {
         setRates(num);
     };
 
-    // useEffect(() => {
-    //     dispatch(localstorage(JSON.parse(localStorage.getItem('cart')) || []))
-    // }, [])
-
-    // useEffect(() => {
-    //     localStorage.setItem('cart', JSON.stringify(cart));
-    // }, [cart])
-    // console.log('корзина', cart)
+    useEffect(() => {
+        setQuantity(1);
+    }, [rates])
 
     const handleQuantity = (e) => {
         if (quantity === 0) {
@@ -85,7 +80,7 @@ export const SizeQuantity = () => {
                     {sizes &&
                         sizes.map((elem) => {
                             let { size, available } = elem;
-                            return (
+                            return available && (
                                 <span
                                     className={
                                         size === rates && available
@@ -102,7 +97,8 @@ export const SizeQuantity = () => {
                             );
                         })}
                 </p>
-                <p hidden={rates === 0 ? true : false}>
+
+                <p hidden={rates === null ? true : false}>
                     Количество:
                     <span className='btn-group btn-group-sm pl-2'>
                         <button
@@ -129,7 +125,7 @@ export const SizeQuantity = () => {
             <button
                 className='btn btn-danger btn-block btn-lg'
                 onClick={handleCart}
-                disabled={rates === 0 ? true : false}
+                disabled={rates === null ? true : false}
             >
                 В корзину
             </button>

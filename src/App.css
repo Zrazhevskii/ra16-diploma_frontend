@@ -332,6 +332,6 @@ h2, .h2 {
   }
 }
 
-.cartnull, .order-succes {
+.cartnull, .order-succes, .error, .availabil {
   text-align: center;
 }

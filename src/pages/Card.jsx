@@ -11,14 +11,12 @@ export const Card = () => {
     const params = useParams();
     const dispatch = useDispatch();
     const [src, setSrc] = useState();
-
+    // const [avail, setAvail] = useState(true);
     const id = parseInt(params.id);
 
     useEffect(() => {
         dispatch(fetchCardItem(id));
     }, []);
-
-    // dispatch(orderFalse())
 
     const {
         title,
@@ -28,19 +26,26 @@ export const Card = () => {
         color,
         material,
         season,
+        sizes,
         reason,
     } = product;
 
     // useEffect(() => {
-    //     try {
-    // // **Периодически выводится в консоли ошибка, что нельзя прочитать [0] или [1], посмотреть, что за хрень
-    // setSrc(images[0])
-    //     } catch {
-    //         setSrc(images[1])
+    //     if (sizes.find((elem) => elem.available === true) === undefined) {
+    //         return setAvail(undefined)
     //     }
-    // }, [images])
+    //     setAvail(true)
+    // }, [product]);
 
-    if (error) return <Error text={'Что-то пошло не так, перегрузите страницу'}/>
+
+    const availability = sizes.find((elem) => elem.available === true);
+    // console.log(availability)
+    // console.log(availability)
+
+    // console.log(product.sizes);
+
+    if (error)
+        return <Error text={'Что-то пошло не так, перегрузите страницу'} />;
 
     if (loading) {
         return (
@@ -59,7 +64,7 @@ export const Card = () => {
             <div className='row'>
                 <div className='col-5'>
                     <img
-                        // src={src}
+                        // src={`${images[0]}`}
                         className='img-fluid'
                         alt={title}
                     />
@@ -93,7 +98,12 @@ export const Card = () => {
                             </tr>
                         </tbody>
                     </table>
-                    <SizeQuantity />
+                    {availability === undefined ? (
+                        <h6 className='availabil'>К сожалению размеров нет</h6>
+                    ) : (
+                        <SizeQuantity />
+                    )}
+                    {/* <SizeQuantity /> */}
                 </div>
             </div>
         </section>

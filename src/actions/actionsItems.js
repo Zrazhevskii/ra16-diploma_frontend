@@ -31,6 +31,7 @@ import {
     orderLoaderError,
 } from '../store/OrderReduser';
 import { clearCart } from '../store/CartReduser';
+import { clearForm } from '../store/searchFormReduser';
 
 const URL = 'http://localhost:3500';
 const all = {
@@ -39,6 +40,7 @@ const all = {
 };
 let OFFSET = 6;
 let OFFSETNULL = 6;
+let OFFSETSEARCH = 6;
 
 export const fetchHitsItems = () => async (dispatch) => {
     dispatch(hitsLoader());
@@ -99,10 +101,31 @@ export const fetchSearchCards = (str) => async (dispatch) => {
 
     await axios
         .get(URL + `/api/items?q=${str}`)
-        .then((response) => dispatch(addCatalogItems(response.data)))
+        .then((response) => {
+            if (response.data.length < 6) {
+                dispatch(allProducts());
+                dispatch(clearForm())
+            }
+            dispatch(addCatalogItems(response.data));
+        })
         .catch((err) => {
             console.log(err);
         });
+};
+
+export const fetchShowMoreSearchForm = (str) => async (dispatch) => {
+    await axios
+        .get(URL + `/api/items?q=${str}&offset=${OFFSETSEARCH}`)
+        .then((response) => {
+            OFFSETSEARCH = OFFSETSEARCH + 6;
+            if (response.data.length < 6) {
+                dispatch(allProducts());
+                OFFSETSEARCH = 6;
+                dispatch(clearForm())
+            }
+            dispatch(addMorePrioducts(response.data));
+            // dispatch(fetchNullItems(id));
+        })
 };
 
 export const fetchPersonalCategiories = (id) => async (dispatch) => {
@@ -117,6 +140,7 @@ export const fetchPersonalCategiories = (id) => async (dispatch) => {
                 dispatch(allProducts());
             }
             dispatch(addCatalogItems(response.data));
+            dispatch(fetchNullItems(id));
         })
         .catch((err) => {
             console.log(err);
@@ -136,6 +160,7 @@ export const fetchShowMoreProducts = (id) => async (dispatch) => {
                     OFFSET = 6;
                 }
                 dispatch(addMorePrioducts(response.data));
+                dispatch(fetchNullItems(id));
             })
             .catch((err) => {
                 dispatch(catalogLoaderError());

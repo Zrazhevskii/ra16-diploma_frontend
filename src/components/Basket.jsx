@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { deletProductCart } from '../store/CartReduser';
+import { OrderSucces } from '../pages/OrderSucces';
 // import { localstorage } from '../store/CartReduser';
 
 export const Basket = () => {
@@ -18,7 +19,8 @@ export const Basket = () => {
 
     if (cart.length === 0 && orderSucces) {
         return (
-            <h2 className='order-succes'>Вы успешно оформили заказ! Мы свяжемся с вами для уточнения деталей.</h2>
+            <OrderSucces/>
+            // <h2 className='order-succes'>Вы успешно оформили заказ! Мы свяжемся с вами для уточнения деталей.</h2>
         )
     } 
     

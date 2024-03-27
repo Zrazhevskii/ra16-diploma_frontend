@@ -11,7 +11,6 @@ export const CartBasket = () => {
     const { cart } = useSelector(state => state.cart);
     const { loading, error } = useSelector(state => state.order)
     const dispatch = useDispatch();
-    // let localCart = JSON.parse(localStorage.getItem('cart'));
 
     useEffect(() => {
         dispatch(localstorage(JSON.parse(localStorage.getItem('cart'))));

@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ADD_FORM_VALUES } from '../actions/actions';
 import { fetchCatalogItems } from '../actions/actionsItems';
 import { activeCat } from '../store/ActiveCategories';
+import { allProducts } from '../store/BooleanReduser';
+import { clearForm } from '../store/searchFormReduser';
 
 export const Header = () => {
     const value = useSelector((state) => state.formvalues.value);
@@ -17,12 +19,12 @@ export const Header = () => {
     const [style, SetStyle] = useState(''); //красный шильдик на эмблеме корзины, появление/исчезание
 
     const hendleShowCatalog = () => {
+        dispatch(clearForm())
         dispatch(fetchCatalogItems());
-        dispatch(activeCat(11))
+        dispatch(activeCat(11));
     };
 
     const searchForms = (e) => {
-        e.preventDefault();
 
         dispatch({ type: ADD_FORM_VALUES, payload: e.target.value });
     };
@@ -32,10 +34,22 @@ export const Header = () => {
     });
 
     const searchProdacts = () => {
-        if (value) {
+        if (value.length > 0) {
             navigate('/catalog');
             setVisible(!Visible);
+            // dispatch(allProducts())
         } else if (!value) {
+            setVisible(!Visible);
+        }
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    }
+
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            navigate('/catalog');
             setVisible(!Visible);
         }
     };
@@ -110,7 +124,7 @@ export const Header = () => {
                                         <div
                                             data-id='search-expander'
                                             className='header-controls-pic header-controls-search'
-                                            onClick={() => searchProdacts()}
+                                            onClick={searchProdacts}
                                         ></div>
                                         {/* <!-- Do programmatic navigation on click to /cart.html --> */}
                                         <div
@@ -126,6 +140,7 @@ export const Header = () => {
                                     <form
                                         data-id='search-form'
                                         className={`header-controls-search-form form-inline ${classVisible}`}
+                                        onSubmit={(e) => handleSubmit(e)}
                                     >
                                         <input
                                             type='text'
@@ -133,6 +148,7 @@ export const Header = () => {
                                             placeholder='Поиск'
                                             value={value}
                                             onChange={(e) => searchForms(e)}
+                                            onKeyDown={(e) => handleKeyPress(e)}
                                         />
                                     </form>
                                 </div>

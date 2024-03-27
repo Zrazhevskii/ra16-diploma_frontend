@@ -34,7 +34,7 @@ export const Catalog = () => {
     const handleKeyPress = (e) => {
         if (e.key === 'Enter') {
             dispatch(fetchSearchCards(value));
-            dispatch(clearForm());
+            // dispatch(clearForm());
         }
     };
 

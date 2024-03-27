@@ -11,12 +11,10 @@ const validate = (phone) => {
 
 export const Order = () => {
     const dispatch = useDispatch();
-    const { phone, adress, agreement } = useSelector(
-        (state) => state.order
-    );
+    const { phone, adress, agreement } = useSelector((state) => state.order);
 
     const cart = useSelector((state) => state.cart.cart);
-    
+
     const handleSubmit = (e) => {
         e.preventDefault();
     };
@@ -40,7 +38,7 @@ export const Order = () => {
         const newOrder = {
             owner: {
                 phone: phone,
-                adress: adress,
+                address: adress,
             },
             items: cart.map((elem) => ({
                 id: elem.id,
@@ -50,25 +48,18 @@ export const Order = () => {
         };
 
         if (validate(phone)) {
-            // dispatch(clearCart())
-            // localStorage.removeItem('cart');
             dispatch(fetchSetOrder(newOrder));
-            dispatch(orderSetSucces())
-            // dispatch(orderSucces())
+            dispatch(orderSetSucces());
             return;
         } else {
             alert('Номер телефона должен содержать только цифры');
         }
-
-        
     };
 
     const divStyle = {
         maxWidth: '30rem',
         margin: '0 auto',
     };
-
-    // if (orderSucces) return <OrderSucces/>
 
     if (cart.length !== 0) {
         return (
