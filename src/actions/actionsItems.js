@@ -19,13 +19,13 @@ import {
     orderLoader,
     orderLoaderError,
 } from '../store/OrderReduser';
-import { clearCart } from '../store/CartReduser';
 import { clearForm } from '../store/searchFormReduser';
 import {
     addCategoriesItems,
     allProducts,
     categoriesLoader,
     categoriesLoaderError,
+    clearCart,
     nextProducts,
     orderSetSucces,
 } from './actions';

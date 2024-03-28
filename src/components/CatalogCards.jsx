@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 export const CatalogCards = ({ data }) => {
     const { id, title, images, price } = data;
 
+    // console.log(images)
+
     return (
         <div className='col-4'>
             <div className='card catalog-item-card'>
@@ -31,7 +33,7 @@ CatalogCards.propTypes = {
     data: PropTypes.shape({
         id: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
-        images: PropTypes.string.isRequired,
+        images: PropTypes.array.isRequired,
         price: PropTypes.number.isRequired,
     }),
 };

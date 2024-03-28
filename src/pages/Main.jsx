@@ -8,7 +8,7 @@ import {
     fetchHitsItems,
 } from '../actions/actionsItems';
 import { activeCat } from '../store/ActiveCategories';
-import { localstorage } from '../store/CartReduser';
+import { localstorage } from '../actions/actions';
 
 export const Main = () => {
     const dispatch = useDispatch();

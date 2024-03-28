@@ -31,7 +31,7 @@ HitsCards.propTypes = {
     data: PropTypes.shape({
         id: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
-        images: PropTypes.string.isRequired,
+        images: PropTypes.array.isRequired,
         price: PropTypes.number.isRequired,
     }),
 };

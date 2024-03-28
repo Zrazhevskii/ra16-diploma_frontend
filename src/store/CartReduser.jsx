@@ -94,36 +94,36 @@ const CartReduser = (state = initialState, action) => {
     }
 };
 
-export const addCartProdact = (payload) => ({
-    type: ADD_PRODUCT_CART_SUCCES,
-    payload,
-});
+// export const addCartProdact = (payload) => ({
+//     type: ADD_PRODUCT_CART_SUCCES,
+//     payload,
+// });
 
-export const updateCartProducts = (payload) => ({
-    type: UPDATE_ITEM_CART,
-    payload,
-});
+// export const updateCartProducts = (payload) => ({
+//     type: UPDATE_ITEM_CART,
+//     payload,
+// });
 
-export const loadingCart = () => ({
-    type: LOADING_CART,
-});
+// export const loadingCart = () => ({
+//     type: LOADING_CART,
+// });
 
-export const localstorage = (payload) => ({
-    type: LOAD_LOCALSTORAGE_CART,
-    payload,
-});
+// export const localstorage = (payload) => ({
+//     type: LOAD_LOCALSTORAGE_CART,
+//     payload,
+// });
 
-export const loadingError = () => ({
-    type: LOADING_ERROR_CART,
-});
+// export const loadingError = () => ({
+//     type: LOADING_ERROR_CART,
+// });
 
-export const deletProductCart = (payload) => ({
-    type: DELET_PRODUCT_CART,
-    payload,
-});
+// export const deletProductCart = (payload) => ({
+//     type: DELET_PRODUCT_CART,
+//     payload,
+// });
 
-export const clearCart = () => ({
-    type: CLEAR_CART,
-});
+// export const clearCart = () => ({
+//     type: CLEAR_CART,
+// });
 
 export default CartReduser;

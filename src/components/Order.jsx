@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { addAdress, addPhone, changeAgreement } from '../store/OrderReduser';
 import { fetchSetOrder } from '../actions/actionsItems';
-import { orderSetSucces } from '../actions/actions';
+// import { orderSetSucces } from '../actions/actions';
 
 const validate = (phone) => {
     return /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/.test(phone);
@@ -47,7 +47,7 @@ export const Order = () => {
 
         if (validate(phone)) {
             dispatch(fetchSetOrder(newOrder));
-            dispatch(orderSetSucces());
+            // dispatch(orderSetSucces());//закоментировал, чтобы посмотерть зачем я этот диспатч всунул сюдой
             return;
         } else {
             alert('Номер телефона должен содержать только цифры');

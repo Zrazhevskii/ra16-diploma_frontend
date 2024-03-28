@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { deletProductCart } from '../store/CartReduser';
 import { OrderSucces } from '../pages/OrderSucces';
+import { deletProductCart } from '../actions/actions';
 
 export const Basket = () => {
     const dispatch = useDispatch();

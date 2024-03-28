@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { addCartProdact, updateCartProducts } from '../store/CartReduser';
+import { addCartProdact, updateCartProducts } from '../actions/actions';
 
 export const SizeQuantity = () => {
     const { product } = useSelector((state) => state.card);

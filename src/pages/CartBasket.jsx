@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import { Basket } from '../components/Basket';
 import { Order } from '../components/Order';
 import { useDispatch, useSelector } from 'react-redux';
-import { localstorage } from '../store/CartReduser';
 import { HalfMalf } from 'react-spinner-animated';
 import 'react-spinner-animated/dist/index.css';
 import { Error } from '../components/Error';
+import { localstorage } from '../actions/actions';
 
 export const CartBasket = () => {
     const { cart } = useSelector((state) => state.cart);
