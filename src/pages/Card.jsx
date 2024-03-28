@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchCardItem } from '../actions/actionsItems';
 import { SizeQuantity } from '../components/SizeQuantity';
 import { BarLoader } from 'react-spinner-animated';
+import { Error } from '../components/Error'
 import 'react-spinner-animated/dist/index.css';
 
 export const Card = () => {

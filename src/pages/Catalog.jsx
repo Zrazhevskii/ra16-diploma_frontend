@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCatalogItems, fetchSearchCards } from '../actions/actionsItems';
 import { CatalogCards } from '../components/CatalogCards';

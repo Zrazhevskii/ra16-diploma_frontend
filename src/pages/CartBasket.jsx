@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Basket } from '../components/Basket';
 import { Order } from '../components/Order';
 import { useDispatch, useSelector } from 'react-redux';

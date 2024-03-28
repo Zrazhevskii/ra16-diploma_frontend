@@ -1,5 +1,5 @@
-import React from 'react';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types'
 
 export const HitsCards = ({ data }) => {
     const { id, title, images, price } = data;
@@ -25,4 +25,13 @@ export const HitsCards = ({ data }) => {
             </div>
         </div>
     );
+};
+
+HitsCards.propTypes = {
+    data: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        title: PropTypes.string.isRequired,
+        images: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+    }),
 };
