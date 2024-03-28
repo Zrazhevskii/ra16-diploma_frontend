@@ -14,7 +14,7 @@ export const CartBasket = () => {
 
     useEffect(() => {
         dispatch(localstorage(JSON.parse(localStorage.getItem('cart'))));
-    }, []);
+    }, [dispatch]);
 
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart));

@@ -39,17 +39,4 @@ const CategoriesReduser = (state = initialState, action) => {
     }
 };
 
-export const addCategoriesItems = (payload) => ({
-    type: ADD_CATEGORIES_SUCCES,
-    payload,
-});
-
-export const categoriesLoader = () => ({
-    type: CATEGORIES_LOADER_START,
-});
-
-export const categoriesLoaderError = () => ({
-    type: CATEGORIES_LOADER_ERROR,
-});
-
 export default CategoriesReduser;

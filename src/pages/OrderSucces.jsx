@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const OrderSucces = () => {
     return (
         <div className='order-succes'>

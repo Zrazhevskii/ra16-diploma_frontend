@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import banner from '../img/banner.jpg';
 import { Outlet } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -15,20 +15,20 @@ export const Main = () => {
 
     useEffect(() => {
         dispatch(fetchHitsItems());
-    }, []);
+    }, [dispatch]);
 
     useEffect(() => {
         dispatch(activeCat(11));
         dispatch(fetchCategoriesItems());
-    }, []);
+    }, [dispatch]);
 
     useEffect(() => {
         dispatch(fetchCatalogItems());
-    }, []);
+    }, [dispatch]);
 
     useEffect(() => {
         dispatch(localstorage(JSON.parse(localStorage.getItem('cart'))));
-    }, []);
+    }, [dispatch]);
 
     return (
         <main className='container'>

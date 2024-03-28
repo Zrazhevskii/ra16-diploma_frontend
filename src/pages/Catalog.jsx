@@ -18,6 +18,7 @@ export const Catalog = () => {
         } else {
             dispatch(fetchSearchCards(value));
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleSubmit = (e) => {

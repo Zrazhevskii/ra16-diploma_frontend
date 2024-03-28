@@ -32,7 +32,7 @@ const CartReduser = (state = initialState, action) => {
                 error: false,
             };
 
-        case UPDATE_ITEM_CART:
+        case UPDATE_ITEM_CART: {
             const indexCart = state.cart.findIndex(
                 (item) =>
                     item.title === action.payload.title &&
@@ -48,6 +48,8 @@ const CartReduser = (state = initialState, action) => {
                 loading: false,
                 error: false,
             };
+        }
+            
 
         case LOADING_CART:
             return {
@@ -63,7 +65,7 @@ const CartReduser = (state = initialState, action) => {
                 error: true,
             };
 
-        case DELET_PRODUCT_CART:
+        case DELET_PRODUCT_CART: {
             let newProductsCart = state.cart.filter(
                 (elem) => elem.id !== action.payload
             );
@@ -74,8 +76,9 @@ const CartReduser = (state = initialState, action) => {
                 loading: false,
                 error: false,
             };
-
-        case CLEAR_CART:
+        }
+            
+        case CLEAR_CART: {
             let newCarts = [];
             return {
                 ...state,
@@ -83,6 +86,8 @@ const CartReduser = (state = initialState, action) => {
                 loading: false,
                 error: false,
             };
+        }
+            
 
         default:
             return state;

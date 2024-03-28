@@ -46,3 +46,16 @@ export const CHANGE_AGREEMENT = 'CHANGE_AGREEMENT';
 export const LOADING_ORDER = 'LOADING_ORDER';
 export const LOADING_ORDER_ERROR = 'LOADING_ORDER_ERROR';
 export const CLEAR_ORDER = 'CLEAR_ORDER';
+
+export const addCategoriesItems = (payload) => ({
+    type: ADD_CATEGORIES_SUCCES,
+    payload,
+});
+
+export const categoriesLoader = () => ({
+    type: CATEGORIES_LOADER_START,
+});
+
+export const categoriesLoaderError = () => ({
+    type: CATEGORIES_LOADER_ERROR,
+});

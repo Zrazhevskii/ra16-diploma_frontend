@@ -15,7 +15,7 @@ export const Card = () => {
 
     useEffect(() => {
         dispatch(fetchCardItem(id));
-    }, []);
+    }, [id, dispatch]);
 
     const {
         title,

@@ -13,12 +13,6 @@ import {
 } from '../store/CatalogReduser';
 
 import {
-    addCategoriesItems,
-    categoriesLoader,
-    categoriesLoaderError,
-} from '../store/CategoriesReduser';
-
-import {
     addHitsAction,
     hitsLoader,
     hitsLoaderError,
@@ -32,6 +26,11 @@ import {
 } from '../store/OrderReduser';
 import { clearCart } from '../store/CartReduser';
 import { clearForm } from '../store/searchFormReduser';
+import {
+    addCategoriesItems,
+    categoriesLoader,
+    categoriesLoaderError,
+} from './actions';
 
 const URL = 'http://localhost:3500';
 const all = {
@@ -120,10 +119,10 @@ export const fetchShowMoreSearchForm = (str) => async (dispatch) => {
             if (response.data.length < 6) {
                 dispatch(allProducts());
                 OFFSETSEARCH = 6;
-                dispatch(clearForm())
+                dispatch(clearForm());
             }
             dispatch(addMorePrioducts(response.data));
-        })
+        });
 };
 
 export const fetchPersonalCategiories = (id) => async (dispatch) => {

@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const NoNamePages = () => {
     return (
         <section className='top-sales'>
