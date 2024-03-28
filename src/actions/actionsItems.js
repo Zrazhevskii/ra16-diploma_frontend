@@ -1,10 +1,5 @@
 import { addCard, cardLoader, cardLoaderError } from '../store/CardItemReduser';
 import {
-    allProducts,
-    nextProducts,
-    orderSetSucces,
-} from '../store/BooleanReduser';
-import {
     addCatalogItems,
     addMorePrioducts,
     catalogLoader,
@@ -28,8 +23,11 @@ import { clearCart } from '../store/CartReduser';
 import { clearForm } from '../store/searchFormReduser';
 import {
     addCategoriesItems,
+    allProducts,
     categoriesLoader,
     categoriesLoaderError,
+    nextProducts,
+    orderSetSucces,
 } from './actions';
 
 const URL = 'http://localhost:3500';

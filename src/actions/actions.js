@@ -59,3 +59,19 @@ export const categoriesLoader = () => ({
 export const categoriesLoaderError = () => ({
     type: CATEGORIES_LOADER_ERROR,
 });
+
+export const allProducts = () => ({
+    type: ALL_PRODUCTS,
+});
+
+export const nextProducts = () => ({
+    type: NEXT_PRODUCTS,
+});
+
+export const orderSetSucces = () => ({
+    type: ORDER_SUCCES,
+});
+
+export const orderFalse = () => ({
+    type: ORDER_FALSE,
+});
