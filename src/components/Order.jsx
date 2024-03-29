@@ -1,7 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { addAdress, addPhone, changeAgreement } from '../store/OrderReduser';
 import { fetchSetOrder } from '../actions/actionsItems';
-// import { orderSetSucces } from '../actions/actions';
+import { addAdress, addPhone, changeAgreement } from '../actions/actions';
 
 const validate = (phone) => {
     return /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/.test(phone);

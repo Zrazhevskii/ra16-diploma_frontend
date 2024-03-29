@@ -6,27 +6,21 @@ import {
     catalogLoaderError,
     clearCatalogs,
 } from '../store/CatalogReduser';
-
-import {
-    addHitsAction,
-    hitsLoader,
-    hitsLoaderError,
-} from '../store/HitsReduser';
-
 import axios from 'axios';
-import {
-    clearOrder,
-    orderLoader,
-    orderLoaderError,
-} from '../store/OrderReduser';
 import { clearForm } from '../store/searchFormReduser';
 import {
     addCategoriesItems,
+    addHitsAction,
     allProducts,
     categoriesLoader,
     categoriesLoaderError,
     clearCart,
+    clearOrder,
+    hitsLoader,
+    hitsLoaderError,
     nextProducts,
+    orderLoader,
+    orderLoaderError,
     orderSetSucces,
 } from './actions';
 

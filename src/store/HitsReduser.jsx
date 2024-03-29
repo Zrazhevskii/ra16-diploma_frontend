@@ -38,11 +38,4 @@ const HitsReduser = (state = initialStateHits, action) => {
     }
 };
 
-export const addHitsAction = (payload) => ({
-    type: ADD_HITS_ITEMS_SUCCESS,
-    payload,
-});
-export const hitsLoader = () => ({ type: HITS_LOADER_START });
-export const hitsLoaderError = () => ({ type: HITS_LOADER_ERROR });
-
 export default HitsReduser;

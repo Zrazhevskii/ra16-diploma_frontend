@@ -107,3 +107,38 @@ export const deletProductCart = (payload) => ({
 export const clearCart = () => ({
     type: CLEAR_CART,
 });
+
+export const addHitsAction = (payload) => ({
+    type: ADD_HITS_ITEMS_SUCCESS,
+    payload,
+});
+
+export const hitsLoader = () => ({ type: HITS_LOADER_START });
+
+export const hitsLoaderError = () => ({ type: HITS_LOADER_ERROR });
+
+export const addPhone = (payload) => ({
+    type: ADD_PHONE_ORDER,
+    payload,
+});
+
+export const addAdress = (payload) => ({
+    type: ADD_ADRESS_ORDER,
+    payload,
+});
+
+export const changeAgreement = () => ({
+    type: CHANGE_AGREEMENT,
+});
+
+export const orderLoader = () => ({
+    type: LOADING_ORDER,
+});
+
+export const orderLoaderError = () => ({
+    type: LOADING_ORDER_ERROR,
+});
+
+export const clearOrder = () => ({
+    type: CLEAR_ORDER,
+});

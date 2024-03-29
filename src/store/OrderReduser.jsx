@@ -60,30 +60,4 @@ const OrderReduser = (state = initialState, action) => {
     }
 };
 
-export const addPhone = (payload) => ({
-    type: ADD_PHONE_ORDER,
-    payload,
-});
-
-export const addAdress = (payload) => ({
-    type: ADD_ADRESS_ORDER,
-    payload,
-});
-
-export const changeAgreement = () => ({
-    type: CHANGE_AGREEMENT,
-});
-
-export const orderLoader = () => ({
-    type: LOADING_ORDER,
-});
-
-export const orderLoaderError = () => ({
-    type: LOADING_ORDER_ERROR,
-});
-
-export const clearOrder = () => ({
-    type: CLEAR_ORDER,
-});
-
 export default OrderReduser;
