@@ -5,6 +5,7 @@ import {
     catalogLoader,
     catalogLoaderError,
     clearCatalogs,
+    showMoreCatalog,
 } from '../store/CatalogReduser';
 import axios from 'axios';
 import { clearForm } from '../store/searchFormReduser';
@@ -138,7 +139,7 @@ export const fetchPersonalCategiories = (id) => async (dispatch) => {
 };
 
 export const fetchShowMoreProducts = (id) => async (dispatch) => {
-    dispatch(catalogLoader());
+    dispatch(showMoreCatalog());
 
     if (id === 11) {
         await axios
