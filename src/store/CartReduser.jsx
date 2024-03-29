@@ -50,7 +50,6 @@ const CartReduser = (state = initialState, action) => {
             };
         }
             
-
         case LOADING_CART:
             return {
                 ...state,
@@ -88,42 +87,9 @@ const CartReduser = (state = initialState, action) => {
             };
         }
             
-
         default:
             return state;
     }
 };
-
-// export const addCartProdact = (payload) => ({
-//     type: ADD_PRODUCT_CART_SUCCES,
-//     payload,
-// });
-
-// export const updateCartProducts = (payload) => ({
-//     type: UPDATE_ITEM_CART,
-//     payload,
-// });
-
-// export const loadingCart = () => ({
-//     type: LOADING_CART,
-// });
-
-// export const localstorage = (payload) => ({
-//     type: LOAD_LOCALSTORAGE_CART,
-//     payload,
-// });
-
-// export const loadingError = () => ({
-//     type: LOADING_ERROR_CART,
-// });
-
-// export const deletProductCart = (payload) => ({
-//     type: DELET_PRODUCT_CART,
-//     payload,
-// });
-
-// export const clearCart = () => ({
-//     type: CLEAR_CART,
-// });
 
 export default CartReduser;

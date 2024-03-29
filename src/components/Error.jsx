@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 export const Error = ({ text }) => {
     return (
@@ -9,5 +9,5 @@ export const Error = ({ text }) => {
 };
 
 Error.propTypes = {
-    text: PropTypes.string.isRequired
-}
+    text: PropTypes.string.isRequired,
+};

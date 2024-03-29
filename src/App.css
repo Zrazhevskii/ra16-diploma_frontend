@@ -343,3 +343,8 @@ h2,
 .availabil {
     text-align: center;
 }
+
+.card-img-top {
+    height: 280px;
+    object-fit: cover;
+}

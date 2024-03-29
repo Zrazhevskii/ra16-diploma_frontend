@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 export const HitsCards = ({ data }) => {
     const { id, title, images, price } = data;

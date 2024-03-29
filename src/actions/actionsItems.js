@@ -121,6 +121,7 @@ export const fetchPersonalCategiories = (id) => async (dispatch) => {
     dispatch(nextProducts());
     dispatch(clearCatalogs());
     dispatch(catalogLoader());
+    dispatch(clearForm());
 
     await axios
         .get(URL + `/api/items?categoryId=${id}`)
