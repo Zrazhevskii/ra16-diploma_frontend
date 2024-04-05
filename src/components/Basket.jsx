@@ -13,15 +13,15 @@ export const Basket = () => {
         dispatch(deletProductCart(id));
     };
 
-    if (cart.length === 0 && orderSucces) {
+    if (cart === null && orderSucces) {
         return <OrderSucces />;
     }
 
-    if (cart.length === 0) {
+    if (cart === null) {
         return <h2 className='cartnull'>Пока в корзине ничего нет</h2>;
     }
 
-    if (cart.length !== 0) {
+    if (cart !== null) {
         return (
             <section className='cart'>
                 <h2 className='text-center'>Корзина</h2>

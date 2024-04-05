@@ -45,24 +45,27 @@ export const SizeQuantity = () => {
             sum: price * quantity,
         };
 
-        const index = cart.findIndex(
-            (item) =>
-                item.title === cartItem.title && item.rates === cartItem.rates
-        );
+        if (cart !== null) {
+            const index = cart.findIndex(
+                (item) =>
+                    item.title === cartItem.title &&
+                    item.rates === cartItem.rates
+            );
 
-        if (index !== -1) {
-            let tem = {
-                id,
-                title,
-                rates,
-                quantity: cartItem.quantity + cart[index].quantity,
-                price,
-                sum: cartItem.sum + cart[index].sum,
-            };
+            if (index !== -1) {
+                let tem = {
+                    id,
+                    title,
+                    rates,
+                    quantity: cartItem.quantity + cart[index].quantity,
+                    price,
+                    sum: cartItem.sum + cart[index].sum,
+                };
 
-            navi('/cart');
+                navi('/cart');
 
-            return dispatch(updateCartProducts(tem));
+                return dispatch(updateCartProducts(tem));
+            }
         }
 
         dispatch(addCartProdact(cartItem));

@@ -45,17 +45,4 @@ const BooleanReduser = (state = initialState, action) => {
     }
 };
 
-
-// export const nextProducts = () => ({
-//     type: NEXT_PRODUCTS,
-// });
-
-// export const orderSetSucces = () => ({
-//     type: ORDER_SUCCES,
-// });
-
-// export const orderFalse = () => ({
-//     type: ORDER_FALSE,
-// });
-
 export default BooleanReduser;

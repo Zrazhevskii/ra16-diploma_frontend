@@ -9,7 +9,7 @@ import {
 } from '../actions/actions';
 
 const initialState = {
-    cart: JSON.parse(localStorage.getItem('cart')) || [],
+    cart: JSON.parse(localStorage.getItem('cart')) || null,
     loading: false,
     error: false,
 };
@@ -17,6 +17,14 @@ const initialState = {
 const CartReduser = (state = initialState, action) => {
     switch (action.type) {
         case ADD_PRODUCT_CART_SUCCES:
+            if (state.cart === null) {
+                return {
+                    ...state,
+                    cart: [action.payload],
+                    loading: false,
+                    error: false,
+                };
+            }
             return {
                 ...state,
                 cart: [...state.cart, action.payload],
@@ -49,7 +57,7 @@ const CartReduser = (state = initialState, action) => {
                 error: false,
             };
         }
-            
+
         case LOADING_CART:
             return {
                 ...state,
@@ -76,9 +84,9 @@ const CartReduser = (state = initialState, action) => {
                 error: false,
             };
         }
-            
+
         case CLEAR_CART: {
-            let newCarts = [];
+            let newCarts = null;
             return {
                 ...state,
                 cart: newCarts,
@@ -86,7 +94,7 @@ const CartReduser = (state = initialState, action) => {
                 error: false,
             };
         }
-            
+
         default:
             return state;
     }

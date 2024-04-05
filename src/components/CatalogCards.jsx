@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 export const CatalogCards = ({ data }) => {
     const { id, title, images, price } = data;
 
-    // console.log(images)
-
     return (
         <div className='col-4'>
             <div className='card catalog-item-card'>

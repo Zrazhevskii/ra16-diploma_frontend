@@ -52,7 +52,7 @@ export const Header = () => {
     };
 
     useEffect(() => {
-        if (cart.length) {
+        if (cart !== null) {
             SetStyle('header-controls-cart-full');
         } else {
             SetStyle('header-controls-cart-full invisible');

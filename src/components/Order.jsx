@@ -46,7 +46,6 @@ export const Order = () => {
 
         if (validate(phone)) {
             dispatch(fetchSetOrder(newOrder));
-            // dispatch(orderSetSucces());//закоментировал, чтобы посмотерть зачем я этот диспатч всунул сюдой
             return;
         } else {
             alert('Номер телефона должен содержать только цифры');
@@ -58,7 +57,7 @@ export const Order = () => {
         margin: '0 auto',
     };
 
-    if (cart.length !== 0) {
+    if (cart !== null) {
         return (
             <section className='order'>
                 <h2 className='text-center'>Оформить заказ</h2>
